@@ -5,426 +5,223 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>juto222 — Portfolio</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-:root {
-  --bg:      #0a0c0f;
-  --bg2:     #0d1117;
-  --bg3:     #111822;
-  --surface: #141c26;
-  --border:  #1e2d3d;
-  --border2: #243344;
-  --green:   #00e676;
-  --green2:  #69ff9d;
-  --cyan:    #00bcd4;
-  --blue:    #4fc3f7;
-  --yellow:  #ffd740;
-  --red:     #ff5252;
-  --purple:  #ce93d8;
-  --text:    #b0c4d8;
-  --muted:   #3d5166;
-  --dim:     #1e3048;
-  --heading: #e4f0ff;
-  --mono:    'JetBrains Mono', monospace;
+:root{
+  --bg:#0a0c0f;--bg2:#0d1117;--surface:#141c26;--border:#1e2d3d;--border2:#243344;
+  --green:#00e676;--green2:#69ff9d;--cyan:#00bcd4;--blue:#4fc3f7;
+  --yellow:#ffd740;--red:#ff5252;--purple:#ce93d8;--orange:#ff9100;
+  --text:#b0c4d8;--muted:#3d5166;--dim:#1e3048;--heading:#e4f0ff;
+  --mono:'JetBrains Mono',monospace;
 }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--mono);font-size:14px;line-height:1.7;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,.06) 2px,rgba(0,0,0,.06) 4px);pointer-events:none;z-index:9999}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--border2);border-radius:2px}
 
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:.9rem 2.5rem;background:rgba(10,12,15,.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+.nav-logo{color:var(--green);font-size:.9rem;font-weight:700;letter-spacing:.05em}
+.nav-logo span{color:var(--muted);font-weight:400}
+.nav-links{display:flex;gap:1.75rem;list-style:none}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;transition:color .2s}
+.nav-links a:hover{color:var(--green)}
+.nav-links a.services-link{color:var(--yellow);border:1px solid rgba(255,215,64,.25);padding:.25rem .65rem;border-radius:2px}
+.nav-links a.services-link:hover{color:var(--yellow);border-color:var(--yellow);background:rgba(255,215,64,.06)}
+.nav-dot{display:flex;align-items:center;gap:.5rem;font-size:.7rem;color:var(--green)}
+.nav-dot::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--green);animation:bl 2s ease-in-out infinite}
+@keyframes bl{0%,100%{opacity:1}50%{opacity:.3}}
+@keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
 
-body {
-  background: var(--bg);
-  color: var(--text);
-  font-family: var(--mono);
-  font-size: 14px;
-  line-height: 1.7;
-  overflow-x: hidden;
-}
+#hero{min-height:100vh;display:flex;align-items:center;padding:7rem 2.5rem 3rem;position:relative;overflow:hidden}
+.hero-bg-grid{position:absolute;inset:0;background-image:linear-gradient(var(--dim) 1px,transparent 1px),linear-gradient(90deg,var(--dim) 1px,transparent 1px);background-size:48px 48px;opacity:.35;mask-image:radial-gradient(ellipse 80% 70% at 30% 50%,black 20%,transparent 80%)}
+.hero-glow{position:absolute;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(0,230,118,.07) 0%,transparent 65%);top:50%;left:20%;transform:translate(-50%,-50%);pointer-events:none}
+.hero-inner{position:relative;max-width:820px}
+.prompt-line{display:flex;align-items:center;gap:.5rem;font-size:.78rem;color:var(--muted);margin-bottom:1.2rem;opacity:0;animation:fadeIn .5s .1s forwards}
+.pu{color:var(--green)}.ph{color:var(--cyan)}.pp{color:var(--blue)}
+.hero-title{font-size:clamp(3rem,8vw,6.5rem);font-weight:700;line-height:1;letter-spacing:-.02em;color:var(--heading);margin-bottom:1rem;opacity:0;animation:fadeIn .5s .25s forwards}
+.hero-title .g{color:var(--green)}.hero-title .m{color:var(--muted);font-weight:300}
+.hero-tagline{font-size:.85rem;color:var(--muted);margin-bottom:2rem;max-width:540px;line-height:1.9;opacity:0;animation:fadeIn .5s .4s forwards}
+.hero-tagline .hl{color:var(--green)}.hero-tagline .hl2{color:var(--cyan)}
+.terminal-block{background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:1.25rem 1.5rem;margin-bottom:2rem;max-width:560px;opacity:0;animation:fadeIn .5s .55s forwards}
+.t-line{display:flex;gap:.75rem;margin-bottom:.25rem}
+.t-prompt{color:var(--green)}.t-key{color:var(--cyan);min-width:110px}.t-val{color:var(--text)}.t-ok{color:var(--green)}.t-y{color:var(--yellow)}
+.t-cursor{display:inline-block;width:8px;height:14px;background:var(--green);vertical-align:middle;animation:bl 1s step-end infinite;margin-left:2px}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap;opacity:0;animation:fadeIn .5s .7s forwards}
+.btn{font-family:var(--mono);font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;padding:.65rem 1.5rem;border-radius:3px;transition:all .2s;display:inline-flex;align-items:center;gap:.4rem}
+.btn-g{background:var(--green);color:var(--bg);font-weight:600}.btn-g:hover{background:var(--green2);box-shadow:0 0 20px rgba(0,230,118,.25);transform:translateY(-1px)}
+.btn-ghost{border:1px solid var(--border2);color:var(--muted)}.btn-ghost:hover{border-color:var(--cyan);color:var(--cyan);transform:translateY(-1px)}
+.btn-y{background:rgba(255,215,64,.1);border:1px solid rgba(255,215,64,.35);color:var(--yellow)}.btn-y:hover{background:rgba(255,215,64,.18);border-color:var(--yellow);box-shadow:0 0 16px rgba(255,215,64,.15);transform:translateY(-1px)}
+.hero-stats{position:absolute;right:0;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:1.5rem;text-align:right;opacity:0;animation:fadeIn .5s .85s forwards}
+.stat-num{font-size:2.4rem;font-weight:700;color:var(--heading);line-height:1;display:block}
+.stat-lbl{font-size:.6rem;color:var(--muted);letter-spacing:.15em;text-transform:uppercase}
 
-body::before {
-  content: '';
-  position: fixed; inset: 0;
-  background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.06) 2px, rgba(0,0,0,0.06) 4px);
-  pointer-events: none;
-  z-index: 9999;
-}
+section{padding:5.5rem 2.5rem;border-top:1px solid var(--border)}
+.max-w{max-width:1000px;margin:0 auto}
+.sec-tag{font-size:.68rem;color:var(--green);letter-spacing:.2em;text-transform:uppercase;margin-bottom:.5rem;display:flex;align-items:center;gap:.6rem}
+.sec-tag::before{content:'//';color:var(--muted)}
+.sec-title{font-size:clamp(1.6rem,3.5vw,2.8rem);font-weight:700;color:var(--heading);letter-spacing:-.02em;margin-bottom:2.5rem;line-height:1.1}
+.sec-title em{font-style:normal;color:var(--green)}
 
-::-webkit-scrollbar { width: 4px; }
-::-webkit-scrollbar-track { background: var(--bg); }
-::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 2px; }
-
-/* NAV */
-nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 0.9rem 2.5rem;
-  background: rgba(10,12,15,0.92);
-  backdrop-filter: blur(16px);
-  border-bottom: 1px solid var(--border);
-}
-.nav-logo { color: var(--green); font-size: 0.9rem; font-weight: 700; letter-spacing: 0.05em; }
-.nav-logo span { color: var(--muted); font-weight: 400; }
-.nav-links { display: flex; gap: 2rem; list-style: none; }
-.nav-links a {
-  color: var(--muted); text-decoration: none;
-  font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase;
-  transition: color 0.2s;
-}
-.nav-links a:hover { color: var(--green); }
-.nav-status {
-  display: flex; align-items: center; gap: 0.5rem;
-  font-size: 0.7rem; color: var(--green); letter-spacing: 0.1em;
-}
-.nav-status::before {
-  content: ''; width: 7px; height: 7px;
-  border-radius: 50%; background: var(--green);
-  animation: blink 2s ease-in-out infinite;
-}
-@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
-
-/* HERO */
-#hero {
-  min-height: 100vh;
-  display: flex; align-items: center;
-  padding: 7rem 2.5rem 3rem;
-  position: relative; overflow: hidden;
-}
-.hero-bg-grid {
-  position: absolute; inset: 0;
-  background-image: linear-gradient(var(--dim) 1px, transparent 1px), linear-gradient(90deg, var(--dim) 1px, transparent 1px);
-  background-size: 48px 48px;
-  opacity: 0.35;
-  mask-image: radial-gradient(ellipse 80% 70% at 30% 50%, black 20%, transparent 80%);
-}
-.hero-glow {
-  position: absolute; width: 500px; height: 500px; border-radius: 50%;
-  background: radial-gradient(circle, rgba(0,230,118,0.07) 0%, transparent 65%);
-  top: 50%; left: 20%; transform: translate(-50%,-50%);
-  pointer-events: none;
-}
-.hero-inner { position: relative; max-width: 820px; }
-
-.prompt-line {
-  display: flex; align-items: center; gap: 0.5rem;
-  font-size: 0.78rem; color: var(--muted);
-  margin-bottom: 1.2rem;
-  opacity: 0; animation: fadeIn 0.5s 0.1s forwards;
-}
-.pu { color: var(--green); }
-.ph { color: var(--cyan); }
-.pp { color: var(--blue); }
-
-.hero-title {
-  font-size: clamp(3rem, 8vw, 6.5rem);
-  font-weight: 700; line-height: 1; letter-spacing: -0.02em;
-  color: var(--heading); margin-bottom: 1rem;
-  opacity: 0; animation: fadeIn 0.5s 0.25s forwards;
-}
-.hero-title .g { color: var(--green); }
-.hero-title .m { color: var(--muted); font-weight: 300; }
-
-.hero-tagline {
-  font-size: 0.85rem; color: var(--muted); margin-bottom: 2rem;
-  max-width: 540px; line-height: 1.9;
-  opacity: 0; animation: fadeIn 0.5s 0.4s forwards;
-}
-.hero-tagline .hl { color: var(--green); }
-.hero-tagline .hl2 { color: var(--cyan); }
-
-.terminal-block {
-  background: var(--surface); border: 1px solid var(--border);
-  border-radius: 6px; padding: 1.25rem 1.5rem;
-  margin-bottom: 2rem; max-width: 560px;
-  opacity: 0; animation: fadeIn 0.5s 0.55s forwards;
-}
-.t-line { display: flex; gap: 0.75rem; margin-bottom: 0.25rem; }
-.t-prompt { color: var(--green); }
-.t-key { color: var(--cyan); min-width: 110px; }
-.t-val { color: var(--text); }
-.t-ok { color: var(--green); }
-.t-cursor {
-  display: inline-block; width: 8px; height: 14px;
-  background: var(--green); vertical-align: middle;
-  animation: blink 1s step-end infinite; margin-left: 2px;
-}
-
-.hero-btns {
-  display: flex; gap: 1rem; flex-wrap: wrap;
-  opacity: 0; animation: fadeIn 0.5s 0.7s forwards;
-}
-.btn {
-  font-family: var(--mono); font-size: 0.78rem;
-  letter-spacing: 0.08em; text-transform: uppercase;
-  text-decoration: none; padding: 0.65rem 1.5rem;
-  border-radius: 3px; transition: all 0.2s;
-  display: inline-flex; align-items: center; gap: 0.4rem;
-}
-.btn-primary { background: var(--green); color: var(--bg); font-weight: 600; }
-.btn-primary:hover { background: var(--green2); box-shadow: 0 0 20px rgba(0,230,118,0.25); transform: translateY(-1px); }
-.btn-ghost { border: 1px solid var(--border2); color: var(--muted); }
-.btn-ghost:hover { border-color: var(--cyan); color: var(--cyan); transform: translateY(-1px); }
-
-.hero-stats {
-  position: absolute; right: 0; top: 50%; transform: translateY(-50%);
-  display: flex; flex-direction: column; gap: 1.5rem; text-align: right;
-  opacity: 0; animation: fadeIn 0.5s 0.85s forwards;
-}
-.stat-num { font-size: 2.4rem; font-weight: 700; color: var(--heading); line-height: 1; display: block; }
-.stat-lbl { font-size: 0.6rem; color: var(--muted); letter-spacing: 0.15em; text-transform: uppercase; }
-
-@keyframes fadeIn { from {opacity:0; transform:translateY(12px)} to {opacity:1; transform:translateY(0)} }
-
-/* SECTION */
-section { padding: 5.5rem 2.5rem; border-top: 1px solid var(--border); }
-.max-w { max-width: 1000px; margin: 0 auto; }
-
-.sec-tag {
-  font-size: 0.68rem; color: var(--green); letter-spacing: 0.2em;
-  text-transform: uppercase; margin-bottom: 0.5rem;
-  display: flex; align-items: center; gap: 0.6rem;
-}
-.sec-tag::before { content: '//'; color: var(--muted); }
-
-.sec-title {
-  font-size: clamp(1.6rem, 3.5vw, 2.8rem);
-  font-weight: 700; color: var(--heading);
-  letter-spacing: -0.02em; margin-bottom: 2.5rem; line-height: 1.1;
-}
-.sec-title em { font-style: normal; color: var(--green); }
+/* SERVICES TEASER */
+#services-teaser{background:var(--bg2)}
+.svc-teaser-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem;margin-bottom:2rem}
+.svc-mini{background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:1.25rem;transition:all .25s;position:relative;overflow:hidden}
+.svc-mini::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--c,var(--green));transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.svc-mini:hover::after{transform:scaleX(1)}
+.svc-mini:hover{border-color:rgba(0,230,118,.15);transform:translateY(-3px)}
+.svc-mini-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.5rem}
+.svc-mini-icon{font-size:1.3rem}
+.svc-mini-price{font-size:.75rem;font-weight:700;color:var(--yellow)}
+.svc-mini-name{font-size:.85rem;font-weight:700;color:var(--heading);margin-bottom:.3rem}
+.svc-mini-desc{font-size:.74rem;color:var(--muted);line-height:1.65}
+.svc-cta{background:linear-gradient(135deg,#141c26,#1a2535);border:1px solid rgba(255,215,64,.2);border-radius:5px;padding:1.75rem 2rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;position:relative;overflow:hidden}
+.svc-cta::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--yellow),var(--orange),var(--green))}
+.svc-cta-left{}
+.svc-cta-title{font-size:1rem;font-weight:700;color:var(--heading);margin-bottom:.35rem}
+.svc-cta-sub{font-size:.78rem;color:var(--muted);line-height:1.7}
+.svc-cta-sub strong{color:var(--text)}
+.svc-cta-btns{display:flex;gap:.75rem;flex-shrink:0}
 
 /* ABOUT */
-#about { background: var(--bg2); }
-.about-layout { display: grid; grid-template-columns: 1fr 1.1fr; gap: 4rem; align-items: start; }
-.about-text p { color: var(--muted); margin-bottom: 0.9rem; font-size: 0.88rem; line-height: 1.9; }
-.about-text strong { color: var(--text); }
-.info-table { width: 100%; border-collapse: collapse; }
-.info-table tr { border-bottom: 1px solid var(--border); }
-.info-table tr:last-child { border-bottom: none; }
-.info-table td { padding: 0.7rem 0; font-size: 0.82rem; }
-.info-table td:first-child { color: var(--muted); width: 38%; }
-.info-table td:last-child { color: var(--text); }
-.tag-g {
-  display: inline-block; background: rgba(0,230,118,0.08);
-  border: 1px solid rgba(0,230,118,0.2); color: var(--green);
-  font-size: 0.65rem; padding: 0.15rem 0.5rem; border-radius: 2px; letter-spacing: 0.08em;
-}
+#about{background:var(--bg2)}
+.about-layout{display:grid;grid-template-columns:1fr 1.1fr;gap:4rem;align-items:start}
+.about-text p{color:var(--muted);margin-bottom:.9rem;font-size:.88rem;line-height:1.9}
+.about-text strong{color:var(--text)}
+.info-table{width:100%;border-collapse:collapse}
+.info-table tr{border-bottom:1px solid var(--border)}
+.info-table tr:last-child{border-bottom:none}
+.info-table td{padding:.7rem 0;font-size:.82rem}
+.info-table td:first-child{color:var(--muted);width:38%}
+.info-table td:last-child{color:var(--text)}
+.tag-g{display:inline-block;background:rgba(0,230,118,.08);border:1px solid rgba(0,230,118,.2);color:var(--green);font-size:.65rem;padding:.15rem .5rem;border-radius:2px;letter-spacing:.08em}
 
 /* SKILLS */
-.skills-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
-.skill-group-hd {
-  font-size: 0.68rem; color: var(--muted); letter-spacing: 0.15em;
-  text-transform: uppercase; margin-bottom: 1.5rem;
-  display: flex; align-items: center; gap: 0.75rem;
-}
-.skill-group-hd::after { content: ''; flex: 1; height: 1px; background: var(--border); }
-.skill-row { margin-bottom: 1.2rem; }
-.skill-head { display: flex; justify-content: space-between; margin-bottom: 0.4rem; }
-.skill-name { font-size: 0.82rem; color: var(--text); }
-.skill-pct { font-size: 0.72rem; color: var(--muted); }
-.bar-bg { height: 2px; background: var(--border); border-radius: 1px; overflow: hidden; }
-.bar-fill {
-  height: 100%; border-radius: 1px; width: 0;
-  transition: width 1.3s cubic-bezier(0.16,1,0.3,1);
-}
-.bar-fill.dev { background: linear-gradient(90deg, var(--green), var(--cyan)); }
-.bar-fill.sec { background: linear-gradient(90deg, var(--red), var(--yellow)); }
-.bar-fill.on { width: var(--w); }
+.skills-layout{display:grid;grid-template-columns:1fr 1fr;gap:3rem}
+.skill-group-hd{font-size:.68rem;color:var(--muted);letter-spacing:.15em;text-transform:uppercase;margin-bottom:1.5rem;display:flex;align-items:center;gap:.75rem}
+.skill-group-hd::after{content:'';flex:1;height:1px;background:var(--border)}
+.skill-row{margin-bottom:1.2rem}
+.skill-head{display:flex;justify-content:space-between;margin-bottom:.4rem}
+.skill-name{font-size:.82rem;color:var(--text)}
+.skill-pct{font-size:.72rem;color:var(--muted)}
+.bar-bg{height:2px;background:var(--border);border-radius:1px;overflow:hidden}
+.bar-fill{height:100%;border-radius:1px;width:0;transition:width 1.3s cubic-bezier(.16,1,.3,1)}
+.bar-fill.dev{background:linear-gradient(90deg,var(--green),var(--cyan))}
+.bar-fill.sec{background:linear-gradient(90deg,var(--red),var(--yellow))}
+.bar-fill.on{width:var(--w)}
 
 /* HOBBIES */
-#hobbies { background: var(--bg2); }
-.hobbies-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; }
-.hobby-card {
-  background: var(--surface); border: 1px solid var(--border);
-  padding: 1.5rem; border-radius: 4px;
-  transition: all 0.25s; position: relative; overflow: hidden;
-}
-.hobby-card::before {
-  content: attr(data-num);
-  position: absolute; top: 1rem; right: 1rem;
-  font-size: 0.62rem; color: var(--dim); letter-spacing: 0.1em;
-}
-.hobby-card:hover { border-color: rgba(0,230,118,0.25); transform: translateY(-3px); }
-.hobby-icon { font-size: 1.6rem; margin-bottom: 0.75rem; display: block; }
-.hobby-name { font-size: 0.9rem; font-weight: 600; color: var(--heading); margin-bottom: 0.4rem; }
-.hobby-desc { font-size: 0.78rem; color: var(--muted); line-height: 1.7; }
-.hobby-badge {
-  display: inline-block; margin-top: 0.75rem;
-  font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase;
-  padding: 0.15rem 0.5rem; border-radius: 2px;
-  border: 1px solid var(--border2); color: var(--muted);
-}
-.hobby-badge.g { border-color: rgba(0,230,118,0.3); color: var(--green); background: rgba(0,230,118,0.06); }
-.hobby-badge.y { border-color: rgba(255,215,64,0.3); color: var(--yellow); background: rgba(255,215,64,0.06); }
-
-/* CHESS WIDGET */
-.elo-widget {
-  background: var(--surface); border: 1px solid var(--border);
-  border-radius: 4px; padding: 1.5rem;
-  grid-column: span 2;
-  display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center;
-}
-.elo-label { font-size: 0.68rem; color: var(--muted); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 0.5rem; }
-.elo-num { font-size: 3.5rem; font-weight: 700; color: var(--yellow); line-height: 1; margin-bottom: 0.3rem; }
-.elo-sub { font-size: 0.75rem; color: var(--muted); }
-.elo-bar-labels { display: flex; justify-content: space-between; font-size: 0.62rem; color: var(--muted); margin: 1.25rem 0 0.35rem; }
-.elo-track { height: 4px; background: var(--border); border-radius: 2px; position: relative; }
-.elo-fill { height: 100%; border-radius: 2px; background: linear-gradient(90deg, var(--muted), var(--yellow)); width: 0; transition: width 1.4s cubic-bezier(0.16,1,0.3,1); }
-.elo-fill.on { width: 56%; }
-.elo-marker {
-  position: absolute; top: 50%; transform: translateY(-50%);
-  width: 10px; height: 10px; border-radius: 50%;
-  background: var(--yellow); box-shadow: 0 0 8px rgba(255,215,64,0.5);
-  left: 56%; margin-left: -5px;
-}
-.pieces { font-size: 1.5rem; display: flex; gap: 0.3rem; flex-wrap: wrap; margin: 0.75rem 0; }
+#hobbies{background:var(--bg2)}
+.hobbies-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
+.hobby-card{background:var(--surface);border:1px solid var(--border);padding:1.5rem;border-radius:4px;transition:all .25s;position:relative;overflow:hidden}
+.hobby-card::before{content:attr(data-num);position:absolute;top:1rem;right:1rem;font-size:.62rem;color:var(--dim);letter-spacing:.1em}
+.hobby-card:hover{border-color:rgba(0,230,118,.25);transform:translateY(-3px)}
+.hobby-icon{font-size:1.6rem;margin-bottom:.75rem;display:block}
+.hobby-name{font-size:.9rem;font-weight:600;color:var(--heading);margin-bottom:.4rem}
+.hobby-desc{font-size:.78rem;color:var(--muted);line-height:1.7}
+.hobby-badge{display:inline-block;margin-top:.75rem;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;padding:.15rem .5rem;border-radius:2px;border:1px solid var(--border2);color:var(--muted)}
+.hobby-badge.g{border-color:rgba(0,230,118,.3);color:var(--green);background:rgba(0,230,118,.06)}
+.hobby-badge.y{border-color:rgba(255,215,64,.3);color:var(--yellow);background:rgba(255,215,64,.06)}
+.elo-widget{background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:1.5rem;grid-column:span 2;display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:center}
+.elo-label{font-size:.68rem;color:var(--muted);letter-spacing:.15em;text-transform:uppercase;margin-bottom:.5rem}
+.elo-num{font-size:3.5rem;font-weight:700;color:var(--yellow);line-height:1;margin-bottom:.3rem}
+.elo-sub{font-size:.75rem;color:var(--muted)}
+.elo-bar-labels{display:flex;justify-content:space-between;font-size:.62rem;color:var(--muted);margin:1.25rem 0 .35rem}
+.elo-track{height:4px;background:var(--border);border-radius:2px;position:relative}
+.elo-fill{height:100%;border-radius:2px;background:linear-gradient(90deg,var(--muted),var(--yellow));width:0;transition:width 1.4s cubic-bezier(.16,1,.3,1)}
+.elo-fill.on{width:56%}
+.elo-marker{position:absolute;top:50%;transform:translateY(-50%);width:10px;height:10px;border-radius:50%;background:var(--yellow);box-shadow:0 0 8px rgba(255,215,64,.5);left:56%;margin-left:-5px}
+.pieces{font-size:1.5rem;display:flex;gap:.3rem;flex-wrap:wrap;margin:.75rem 0}
 
 /* TRAVELS */
-.travels-intro { font-size: 0.85rem; color: var(--muted); margin-bottom: 2rem; max-width: 580px; line-height: 1.9; }
-.countries-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
-.country-card {
-  background: var(--surface); border: 1px solid var(--border);
-  border-radius: 4px; padding: 1.25rem 1rem;
-  transition: all 0.25s; position: relative; overflow: hidden;
-}
-.country-card::after {
-  content: '';
-  position: absolute; bottom: 0; left: 0; right: 0;
-  height: 2px; background: var(--c, var(--green));
-  transform: scaleX(0); transform-origin: left; transition: transform 0.3s;
-}
-.country-card:hover::after { transform: scaleX(1); }
-.country-card:hover { border-color: var(--border2); transform: translateY(-3px); }
-.country-flag { font-size: 2rem; margin-bottom: 0.6rem; display: block; }
-.country-name { font-size: 0.85rem; font-weight: 600; color: var(--heading); margin-bottom: 0.2rem; }
-.country-region { font-size: 0.68rem; color: var(--muted); letter-spacing: 0.06em; }
-.country-note { margin-top: 0.6rem; font-size: 0.62rem; letter-spacing: 0.06em; padding: 0.12rem 0.45rem; border-radius: 2px; display: inline-block; }
+.travels-intro{font-size:.85rem;color:var(--muted);margin-bottom:2rem;max-width:580px;line-height:1.9}
+.countries-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
+.country-card{background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:1.25rem 1rem;transition:all .25s;position:relative;overflow:hidden}
+.country-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--c,var(--green));transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.country-card:hover::after{transform:scaleX(1)}
+.country-card:hover{border-color:var(--border2);transform:translateY(-3px)}
+.country-flag{font-size:2rem;margin-bottom:.6rem;display:block}
+.country-name{font-size:.85rem;font-weight:600;color:var(--heading);margin-bottom:.2rem}
+.country-region{font-size:.68rem;color:var(--muted);letter-spacing:.06em}
+.country-note{margin-top:.6rem;font-size:.62rem;letter-spacing:.06em;padding:.12rem .45rem;border-radius:2px;display:inline-block}
 
 /* PROJECTS */
-#projects { background: var(--bg2); }
-.projects-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; }
-.proj-card {
-  background: var(--surface); border: 1px solid var(--border);
-  border-radius: 4px; padding: 1.5rem;
-  display: flex; flex-direction: column; gap: 0.7rem;
-  transition: all 0.25s; position: relative; overflow: hidden;
-}
-.proj-card::before {
-  content: '';
-  position: absolute; top: 0; left: 0; right: 0;
-  height: 1px; background: linear-gradient(90deg, var(--green), var(--cyan));
-  transform: scaleX(0); transform-origin: left; transition: transform 0.3s;
-}
-.proj-card:hover::before { transform: scaleX(1); }
-.proj-card:hover { border-color: rgba(0,230,118,0.15); transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
-.proj-top { display: flex; justify-content: space-between; align-items: flex-start; }
-.proj-icon { font-size: 1.4rem; }
-.proj-gh {
-  font-size: 0.68rem; color: var(--muted); text-decoration: none;
-  padding: 0.25rem 0.55rem; border: 1px solid var(--border); border-radius: 2px;
-  transition: all 0.2s; letter-spacing: 0.06em;
-}
-.proj-gh:hover { color: var(--green); border-color: rgba(0,230,118,0.4); }
-.proj-name { font-size: 0.92rem; font-weight: 600; color: var(--heading); }
-.proj-desc { font-size: 0.78rem; color: var(--muted); line-height: 1.7; flex: 1; }
-.proj-foot { display: flex; justify-content: space-between; align-items: center; }
-.proj-lang {
-  font-size: 0.65rem; letter-spacing: 0.08em;
-  padding: 0.15rem 0.5rem; border-radius: 2px;
-  background: rgba(0,188,212,0.08); border: 1px solid rgba(0,188,212,0.2); color: var(--cyan);
-}
-.proj-stars { font-size: 0.68rem; color: var(--muted); }
+#projects{background:var(--bg2)}
+.projects-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
+.proj-card{background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:1.5rem;display:flex;flex-direction:column;gap:.7rem;transition:all .25s;position:relative;overflow:hidden}
+.proj-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,var(--green),var(--cyan));transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.proj-card:hover::before{transform:scaleX(1)}
+.proj-card:hover{border-color:rgba(0,230,118,.15);transform:translateY(-3px);box-shadow:0 10px 30px rgba(0,0,0,.3)}
+.proj-top{display:flex;justify-content:space-between;align-items:flex-start}
+.proj-icon{font-size:1.4rem}
+.proj-gh{font-size:.68rem;color:var(--muted);text-decoration:none;padding:.25rem .55rem;border:1px solid var(--border);border-radius:2px;transition:all .2s}
+.proj-gh:hover{color:var(--green);border-color:rgba(0,230,118,.4)}
+.proj-name{font-size:.92rem;font-weight:600;color:var(--heading)}
+.proj-desc{font-size:.78rem;color:var(--muted);line-height:1.7;flex:1}
+.proj-foot{display:flex;justify-content:space-between;align-items:center}
+.proj-lang{font-size:.65rem;letter-spacing:.08em;padding:.15rem .5rem;border-radius:2px;background:rgba(0,188,212,.08);border:1px solid rgba(0,188,212,.2);color:var(--cyan)}
+.proj-stars{font-size:.68rem;color:var(--muted)}
 
 /* ROADMAP */
-.roadmap { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; position: relative; }
-.roadmap::before {
-  content: ''; position: absolute;
-  top: 27px; left: 13%; right: 13%;
-  height: 1px; background: var(--border);
-}
-.rm-step { padding: 0 0.75rem; }
-.rm-dot {
-  width: 54px; height: 54px; border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 1.1rem; margin-bottom: 1.25rem; position: relative; z-index: 1;
-}
-.rm-dot.done { background: rgba(0,230,118,0.1); border: 1px solid var(--green); }
-.rm-dot.active { background: rgba(0,188,212,0.1); border: 1px solid var(--cyan); box-shadow: 0 0 16px rgba(0,188,212,0.2); }
-.rm-dot.next { background: var(--surface); border: 1px solid var(--border2); }
-.rm-dot.goal { background: rgba(255,82,82,0.08); border: 1px solid var(--red); }
-.rm-tag { font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 0.3rem; }
-.rm-tag.done { color: var(--green); }
-.rm-tag.active { color: var(--cyan); }
-.rm-tag.next { color: var(--muted); }
-.rm-tag.goal { color: var(--red); }
-.rm-name { font-size: 0.9rem; font-weight: 600; color: var(--heading); margin-bottom: 0.4rem; }
-.rm-desc { font-size: 0.75rem; color: var(--muted); line-height: 1.6; }
+.roadmap{display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative}
+.roadmap::before{content:'';position:absolute;top:27px;left:13%;right:13%;height:1px;background:var(--border)}
+.rm-step{padding:0 .75rem}
+.rm-dot{width:54px;height:54px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.1rem;margin-bottom:1.25rem;position:relative;z-index:1}
+.rm-dot.done{background:rgba(0,230,118,.1);border:1px solid var(--green)}
+.rm-dot.active{background:rgba(0,188,212,.1);border:1px solid var(--cyan);box-shadow:0 0 16px rgba(0,188,212,.2)}
+.rm-dot.next{background:var(--surface);border:1px solid var(--border2)}
+.rm-dot.goal{background:rgba(255,82,82,.08);border:1px solid var(--red)}
+.rm-tag{font-size:.62rem;text-transform:uppercase;letter-spacing:.12em;margin-bottom:.3rem}
+.rm-tag.done{color:var(--green)}.rm-tag.active{color:var(--cyan)}.rm-tag.next{color:var(--muted)}.rm-tag.goal{color:var(--red)}
+.rm-name{font-size:.9rem;font-weight:600;color:var(--heading);margin-bottom:.4rem}
+.rm-desc{font-size:.75rem;color:var(--muted);line-height:1.6}
 
 /* LANGUAGES */
-#languages { background: var(--bg2); }
-.lang-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; }
-.lang-card { background: var(--surface); border: 1px solid var(--border); border-radius: 4px; padding: 1.35rem; }
-.lang-flag { font-size: 1.8rem; margin-bottom: 0.6rem; display: block; }
-.lang-name { font-size: 0.9rem; font-weight: 600; color: var(--heading); }
-.lang-lvl { font-size: 0.65rem; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.8rem; }
-.lang-bar-bg { height: 2px; background: var(--border); border-radius: 1px; overflow: hidden; }
-.lang-bar { height: 100%; border-radius: 1px; background: linear-gradient(90deg, var(--green), var(--cyan)); width: 0; transition: width 1.3s cubic-bezier(0.16,1,0.3,1); }
-.lang-bar.on { width: var(--w); }
+#languages{background:var(--bg2)}
+.lang-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
+.lang-card{background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:1.35rem}
+.lang-flag{font-size:1.8rem;margin-bottom:.6rem;display:block}
+.lang-name{font-size:.9rem;font-weight:600;color:var(--heading)}
+.lang-lvl{font-size:.65rem;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-bottom:.8rem}
+.lang-bar-bg{height:2px;background:var(--border);border-radius:1px;overflow:hidden}
+.lang-bar{height:100%;border-radius:1px;background:linear-gradient(90deg,var(--green),var(--cyan));width:0;transition:width 1.3s cubic-bezier(.16,1,.3,1)}
+.lang-bar.on{width:var(--w)}
 
 /* CONTACT */
-.contact-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
-.contact-body p { font-size: 0.84rem; color: var(--muted); margin-bottom: 0.8rem; line-height: 1.9; }
-.contact-body strong { color: var(--text); }
-.avail-badge {
-  display: inline-flex; align-items: center; gap: 0.4rem; margin-top: 1rem;
-  font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase;
-  padding: 0.35rem 0.85rem; border: 1px solid rgba(0,230,118,0.3);
-  border-radius: 2px; color: var(--green); background: rgba(0,230,118,0.05);
-}
-.avail-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); animation: blink 2s infinite; }
-.contact-links { display: flex; flex-direction: column; gap: 0.9rem; }
-.clink {
-  display: flex; align-items: center; gap: 1rem;
-  padding: 1.1rem 1.25rem;
-  background: var(--surface); border: 1px solid var(--border);
-  border-radius: 4px; text-decoration: none; transition: all 0.2s;
-}
-.clink:hover { border-color: rgba(0,230,118,0.3); transform: translateX(4px); }
-.clink-icon { font-size: 1.3rem; }
-.clink-body { flex: 1; }
-.clink-name { font-size: 0.85rem; font-weight: 600; color: var(--heading); display: block; }
-.clink-val { font-size: 0.75rem; color: var(--muted); }
-.clink-arr { color: var(--muted); transition: all 0.2s; }
-.clink:hover .clink-arr { color: var(--green); transform: translateX(4px); }
+.contact-layout{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
+.contact-body p{font-size:.84rem;color:var(--muted);margin-bottom:.8rem;line-height:1.9}
+.contact-body strong{color:var(--text)}
+.avail-badge{display:inline-flex;align-items:center;gap:.4rem;margin-top:1rem;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;padding:.35rem .85rem;border:1px solid rgba(0,230,118,.3);border-radius:2px;color:var(--green);background:rgba(0,230,118,.05)}
+.avail-dot{width:6px;height:6px;border-radius:50%;background:var(--green);animation:bl 2s infinite}
+.contact-links{display:flex;flex-direction:column;gap:.9rem}
+.clink{display:flex;align-items:center;gap:1rem;padding:1.1rem 1.25rem;background:var(--surface);border:1px solid var(--border);border-radius:4px;text-decoration:none;transition:all .2s}
+.clink:hover{border-color:rgba(0,230,118,.3);transform:translateX(4px)}
+.clink-icon{font-size:1.3rem}
+.clink-body{flex:1}
+.clink-name{font-size:.85rem;font-weight:600;color:var(--heading);display:block}
+.clink-val{font-size:.75rem;color:var(--muted)}
+.clink-arr{color:var(--muted);transition:all .2s}
+.clink:hover .clink-arr{color:var(--green);transform:translateX(4px)}
 
-/* FOOTER */
-footer {
-  border-top: 1px solid var(--border);
-  padding: 1.5rem 2.5rem;
-  display: flex; justify-content: space-between; align-items: center;
-}
-footer p { font-size: 0.68rem; color: var(--muted); letter-spacing: 0.06em; }
-footer .g { color: var(--green); }
+footer{border-top:1px solid var(--border);padding:1.5rem 2.5rem;display:flex;justify-content:space-between;align-items:center}
+footer p{font-size:.68rem;color:var(--muted);letter-spacing:.06em}
+.fg{color:var(--green)}
 
-/* RESPONSIVE */
-@media (max-width: 900px) {
-  nav { padding: 0.8rem 1.5rem; }
-  .nav-links { display: none; }
-  section { padding: 3.5rem 1.5rem; }
-  #hero { padding: 6rem 1.5rem 3rem; }
-  .hero-stats { position: static; flex-direction: row; gap: 2rem; margin-top: 2rem; }
-  .about-layout, .skills-layout, .contact-layout { grid-template-columns: 1fr; }
-  .hobbies-grid { grid-template-columns: 1fr 1fr; }
-  .elo-widget { grid-column: span 1; grid-template-columns: 1fr; }
-  .countries-grid { grid-template-columns: repeat(2, 1fr); }
-  .projects-grid { grid-template-columns: 1fr 1fr; }
-  .roadmap { grid-template-columns: 1fr 1fr; gap: 2rem; }
-  .roadmap::before { display: none; }
-  .lang-grid { grid-template-columns: 1fr 1fr; }
-  footer { flex-direction: column; gap: 0.4rem; }
+@media(max-width:900px){
+  nav{padding:.8rem 1.5rem}.nav-links{display:none}
+  section{padding:3.5rem 1.5rem}#hero{padding:6rem 1.5rem 3rem}
+  .hero-stats{position:static;flex-direction:row;gap:2rem;margin-top:2rem}
+  .about-layout,.skills-layout,.contact-layout{grid-template-columns:1fr}
+  .hobbies-grid{grid-template-columns:1fr 1fr}.elo-widget{grid-column:span 1;grid-template-columns:1fr}
+  .countries-grid{grid-template-columns:repeat(2,1fr)}.projects-grid{grid-template-columns:1fr 1fr}
+  .roadmap{grid-template-columns:1fr 1fr;gap:2rem}.roadmap::before{display:none}
+  .lang-grid{grid-template-columns:1fr 1fr}.svc-teaser-grid{grid-template-columns:1fr 1fr}
+  .svc-cta{flex-direction:column}.svc-cta-btns{flex-direction:row}
+  footer{flex-direction:column;gap:.4rem}
 }
-@media (max-width: 600px) {
-  .hobbies-grid, .projects-grid, .lang-grid, .countries-grid { grid-template-columns: 1fr; }
-  .elo-widget { grid-column: span 1; }
-  .roadmap { grid-template-columns: 1fr; }
+@media(max-width:600px){
+  .hobbies-grid,.projects-grid,.lang-grid,.countries-grid,.svc-teaser-grid{grid-template-columns:1fr}
+  .elo-widget{grid-column:span 1}.roadmap{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -435,14 +232,14 @@ footer .g { color: var(--green); }
   <ul class="nav-links">
     <li><a href="#about">profil</a></li>
     <li><a href="#skills">skills</a></li>
-    <li><a href="services.html">PRESTATIONS</a></li>
     <li><a href="#hobbies">passions</a></li>
     <li><a href="#travels">voyages</a></li>
     <li><a href="#projects">projets</a></li>
     <li><a href="#ambition">objectif</a></li>
+    <li><a href="services.html" class="services-link">💼 services</a></li>
     <li><a href="#contact">contact</a></li>
   </ul>
-  <div class="nav-status">disponible</div>
+  <div class="nav-dot">disponible</div>
 </nav>
 
 <!-- HERO -->
@@ -465,13 +262,15 @@ footer .g { color: var(--green); }
       <div class="t-line"><span class="t-key">formation</span><span class="t-val">Terminale Pro CIEL</span></div>
       <div class="t-line"><span class="t-key">stack</span><span class="t-val">Python · HTML · Git</span></div>
       <div class="t-line"><span class="t-key">target</span><span class="t-val">Pentester offensif</span></div>
-      <div class="t-line"><span class="t-key">chess_elo</span><span class="t-val" style="color:var(--yellow)">1400 ELO MAX ♟</span></div>
+      <div class="t-line"><span class="t-key">chess_elo</span><span class="t-y">1400 ELO MAX ♟</span></div>
       <div class="t-line"><span class="t-key">countries</span><span class="t-val">8 pays visités 🌍</span></div>
+      <div class="t-line"><span class="t-key">services</span><span class="t-y">disponible · tarifs négociables 💼</span></div>
       <div class="t-line"><span class="t-key">status</span><span class="t-ok">DISPONIBLE ✓</span></div>
       <div class="t-line"><span class="t-prompt">$</span><span class="t-cursor"></span></div>
     </div>
     <div class="hero-btns">
-      <a href="#projects" class="btn btn-primary">→ voir mes projets</a>
+      <a href="#projects" class="btn btn-g">→ voir mes projets</a>
+      <a href="services.html" class="btn btn-y">💼 mes services & tarifs</a>
       <a href="https://github.com/juto222" target="_blank" class="btn btn-ghost">↗ github</a>
     </div>
     <div class="hero-stats">
@@ -483,6 +282,56 @@ footer .g { color: var(--green); }
   </div>
 </section>
 
+<!-- SERVICES TEASER -->
+<section id="services-teaser">
+  <div class="max-w">
+    <p class="sec-tag">00 — services</p>
+    <h2 class="sec-title">Je code aussi <em>pour toi</em></h2>
+    <div class="svc-teaser-grid">
+      <div class="svc-mini" style="--c:var(--green)">
+        <div class="svc-mini-header"><span class="svc-mini-icon">🤖</span><span class="svc-mini-price">dès 5€</span></div>
+        <div class="svc-mini-name">Scripts Python & Automatisation</div>
+        <div class="svc-mini-desc">Scraper, organisateur de fichiers, envoi d'emails auto, planificateur de tâches, générateur de rapports...</div>
+      </div>
+      <div class="svc-mini" style="--c:var(--orange)">
+        <div class="svc-mini-header"><span class="svc-mini-icon">🌐</span><span class="svc-mini-price">dès 8€</span></div>
+        <div class="svc-mini-name">Sites Web HTML/CSS</div>
+        <div class="svc-mini-desc">Portfolio, landing page, site vitrine, CV web, page de lien, page de serveur Discord, refonte graphique...</div>
+      </div>
+      <div class="svc-mini" style="--c:#5865f2">
+        <div class="svc-mini-header"><span class="svc-mini-icon">🤖</span><span class="svc-mini-price">dès 8€</span></div>
+        <div class="svc-mini-name">Bots Discord personnalisés</div>
+        <div class="svc-mini-desc">Modération, système XP, économie virtuelle, tickets, rôles automatiques, annonces, entertainment...</div>
+      </div>
+      <div class="svc-mini" style="--c:var(--yellow)">
+        <div class="svc-mini-header"><span class="svc-mini-icon">🔧</span><span class="svc-mini-price">dès 5€</span></div>
+        <div class="svc-mini-name">Outils Python utilitaires</div>
+        <div class="svc-mini-desc">Gestionnaire de mots de passe, convertisseur de fichiers, mini-jeux terminal, traitement d'images en batch...</div>
+      </div>
+      <div class="svc-mini" style="--c:var(--purple)">
+        <div class="svc-mini-header"><span class="svc-mini-icon">🔎</span><span class="svc-mini-price">dès 5€</span></div>
+        <div class="svc-mini-name">Outils réseau & OSINT éducatif</div>
+        <div class="svc-mini-desc">Scanner réseau, outil OSINT basique, ping automatique, outils pédagogiques de cybersécurité. Usage légal uniquement.</div>
+      </div>
+      <div class="svc-mini" style="--c:var(--green)">
+        <div class="svc-mini-header"><span class="svc-mini-icon">✨</span><span class="svc-mini-price">prix libre</span></div>
+        <div class="svc-mini-name">Prestation sur mesure</div>
+        <div class="svc-mini-desc">Un projet qui sort de l'ordinaire ? Décris ton idée sur Discord, je te dis si c'est faisable et on trouve un prix ensemble.</div>
+      </div>
+    </div>
+    <div class="svc-cta">
+      <div class="svc-cta-left">
+        <div class="svc-cta-title">30+ prestations disponibles · Tarifs négociables · Contact via Discord</div>
+        <div class="svc-cta-sub">Tous les prix sont <strong>indicatifs et négociables</strong>. Dis-moi ce dont tu as besoin sur <strong>Discord : user30222</strong> — on discute, on s'accorde, je livre.</div>
+      </div>
+      <div class="svc-cta-btns">
+        <a href="services.html" class="btn btn-y">💼 voir tous les services</a>
+        <a href="#contact" class="btn btn-ghost">→ me contacter</a>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ABOUT -->
 <section id="about">
   <div class="max-w">
@@ -490,10 +339,10 @@ footer .g { color: var(--green); }
     <h2 class="sec-title">Qui est <em>juto</em> ?</h2>
     <div class="about-layout">
       <div class="about-text">
-        <p>Salut, moi c'est <strong>juto</strong> — 17 ans, actuellement en <strong>Terminale Professionnelle CIEL</strong> (Cybersécurité, Informatique et réseaux, Électronique). Une formation technique qui me prépare directement au monde du numérique.</p>
-        <p>Je code en <strong>Python</strong> et en <strong>HTML</strong> depuis quelque temps. J'aime construire des choses concrètes : des outils de sécurité, des petits programmes pratiques, des expériences web. Chaque projet m'apprend quelque chose de nouveau.</p>
+        <p>Salut, moi c'est <strong>juto</strong> — 17 ans, actuellement en <strong>Terminale Professionnelle CIEL</strong> (Cybersécurité, Informatique et réseaux, Électronique).</p>
+        <p>Je code en <strong>Python</strong> et en <strong>HTML</strong>. J'aime construire des choses concrètes : outils de sécurité, programmes pratiques, expériences web. Chaque projet m'apprend quelque chose.</p>
         <p>Ce qui me motive le plus ? La <strong>cybersécurité offensive</strong>. Mon objectif : devenir pentester — tester des systèmes, trouver des failles avant les hackers malveillants.</p>
-        <p>En dehors du code : la <strong>boxe</strong> pour le mental, le <strong>foot</strong> pour l'esprit d'équipe, les <strong>échecs</strong> pour la stratégie (1400 ELO max), et les <strong>voyages</strong> pour explorer le monde.</p>
+        <p>En dehors du code : la <strong>boxe</strong>, le <strong>foot</strong>, les <strong>échecs</strong> (1400 ELO max), et les <strong>voyages</strong> à travers le monde.</p>
       </div>
       <table class="info-table">
         <tr><td>Âge</td><td>17 ans</td></tr>
@@ -517,41 +366,17 @@ footer .g { color: var(--green); }
     <div class="skills-layout">
       <div>
         <div class="skill-group-hd">Langages & Dev</div>
-        <div class="skill-row">
-          <div class="skill-head"><span class="skill-name">🐍 Python</span><span class="skill-pct">70%</span></div>
-          <div class="bar-bg"><div class="bar-fill dev" style="--w:70%"></div></div>
-        </div>
-        <div class="skill-row">
-          <div class="skill-head"><span class="skill-name">🔧 Git & GitHub</span><span class="skill-pct">75%</span></div>
-          <div class="bar-bg"><div class="bar-fill dev" style="--w:75%"></div></div>
-        </div>
-        <div class="skill-row">
-          <div class="skill-head"><span class="skill-name">🌐 HTML</span><span class="skill-pct">60%</span></div>
-          <div class="bar-bg"><div class="bar-fill dev" style="--w:60%"></div></div>
-        </div>
-        <div class="skill-row">
-          <div class="skill-head"><span class="skill-name">🎨 CSS</span><span class="skill-pct">45%</span></div>
-          <div class="bar-bg"><div class="bar-fill dev" style="--w:45%"></div></div>
-        </div>
+        <div class="skill-row"><div class="skill-head"><span class="skill-name">🐍 Python</span><span class="skill-pct">70%</span></div><div class="bar-bg"><div class="bar-fill dev" style="--w:70%"></div></div></div>
+        <div class="skill-row"><div class="skill-head"><span class="skill-name">🔧 Git & GitHub</span><span class="skill-pct">75%</span></div><div class="bar-bg"><div class="bar-fill dev" style="--w:75%"></div></div></div>
+        <div class="skill-row"><div class="skill-head"><span class="skill-name">🌐 HTML</span><span class="skill-pct">60%</span></div><div class="bar-bg"><div class="bar-fill dev" style="--w:60%"></div></div></div>
+        <div class="skill-row"><div class="skill-head"><span class="skill-name">🎨 CSS</span><span class="skill-pct">45%</span></div><div class="bar-bg"><div class="bar-fill dev" style="--w:45%"></div></div></div>
       </div>
       <div>
         <div class="skill-group-hd">Cybersécurité & Réseau (CIEL)</div>
-        <div class="skill-row">
-          <div class="skill-head"><span class="skill-name">🔐 Sécurité informatique</span><span class="skill-pct">55%</span></div>
-          <div class="bar-bg"><div class="bar-fill sec" style="--w:55%"></div></div>
-        </div>
-        <div class="skill-row">
-          <div class="skill-head"><span class="skill-name">🌐 Réseaux TCP/IP</span><span class="skill-pct">50%</span></div>
-          <div class="bar-bg"><div class="bar-fill sec" style="--w:50%"></div></div>
-        </div>
-        <div class="skill-row">
-          <div class="skill-head"><span class="skill-name">🐧 Linux / Kali</span><span class="skill-pct">40%</span></div>
-          <div class="bar-bg"><div class="bar-fill sec" style="--w:40%"></div></div>
-        </div>
-        <div class="skill-row">
-          <div class="skill-head"><span class="skill-name">🛠️ Nmap / Wireshark</span><span class="skill-pct">30%</span></div>
-          <div class="bar-bg"><div class="bar-fill sec" style="--w:30%"></div></div>
-        </div>
+        <div class="skill-row"><div class="skill-head"><span class="skill-name">🔐 Sécurité informatique</span><span class="skill-pct">55%</span></div><div class="bar-bg"><div class="bar-fill sec" style="--w:55%"></div></div></div>
+        <div class="skill-row"><div class="skill-head"><span class="skill-name">🌐 Réseaux TCP/IP</span><span class="skill-pct">50%</span></div><div class="bar-bg"><div class="bar-fill sec" style="--w:50%"></div></div></div>
+        <div class="skill-row"><div class="skill-head"><span class="skill-name">🐧 Linux / Kali</span><span class="skill-pct">40%</span></div><div class="bar-bg"><div class="bar-fill sec" style="--w:40%"></div></div></div>
+        <div class="skill-row"><div class="skill-head"><span class="skill-name">🛠️ Nmap / Wireshark</span><span class="skill-pct">30%</span></div><div class="bar-bg"><div class="bar-fill sec" style="--w:30%"></div></div></div>
       </div>
     </div>
   </div>
@@ -563,45 +388,20 @@ footer .g { color: var(--green); }
     <p class="sec-tag">03 — passions</p>
     <h2 class="sec-title">Ce qui me <em>fait vivre</em></h2>
     <div class="hobbies-grid">
-      <div class="hobby-card" data-num="01">
-        <span class="hobby-icon">🥊</span>
-        <div class="hobby-name">Boxe</div>
-        <div class="hobby-desc">Discipline, rigueur, mental d'acier. La boxe m'apprend à persévérer — que ce soit sur le ring ou devant un écran qui refuse de compiler.</div>
-        <span class="hobby-badge g">discipline</span>
-      </div>
-      <div class="hobby-card" data-num="02">
-        <span class="hobby-icon">⚽</span>
-        <div class="hobby-name">Football</div>
-        <div class="hobby-desc">La passion du jeu collectif. Avoir une stratégie, s'adapter, jouer en équipe — pas si différent du développement en vrai.</div>
-        <span class="hobby-badge">collectif</span>
-      </div>
-      <div class="hobby-card" data-num="03">
-        <span class="hobby-icon">👥</span>
-        <div class="hobby-name">Amis</div>
-        <div class="hobby-desc">Sortir, décompresser, rigoler. Les bons moments avec les proches sont indispensables pour rester motivé et garder la tête froide.</div>
-        <span class="hobby-badge">social</span>
-      </div>
-
-      <!-- CHESS FULL WIDTH -->
-      <div class="elo-widget" data-num="04">
+      <div class="hobby-card" data-num="01"><span class="hobby-icon">🥊</span><div class="hobby-name">Boxe</div><div class="hobby-desc">Discipline, rigueur, mental d'acier. La boxe m'apprend à persévérer — que ce soit sur le ring ou devant un écran qui refuse de compiler.</div><span class="hobby-badge g">discipline</span></div>
+      <div class="hobby-card" data-num="02"><span class="hobby-icon">⚽</span><div class="hobby-name">Football</div><div class="hobby-desc">La passion du jeu collectif. Avoir une stratégie, s'adapter, jouer en équipe — pas si différent du développement en vrai.</div><span class="hobby-badge">collectif</span></div>
+      <div class="hobby-card" data-num="03"><span class="hobby-icon">👥</span><div class="hobby-name">Amis</div><div class="hobby-desc">Sortir, décompresser, rigoler. Les bons moments avec les proches sont indispensables pour rester motivé et garder la tête froide.</div><span class="hobby-badge">social</span></div>
+      <div class="elo-widget">
         <div>
           <div class="elo-label">Niveau atteint — Chess.com</div>
           <div class="elo-num">1400</div>
           <div class="elo-sub">ELO maximum • Intermédiaire-avancé</div>
-          <div class="elo-bar-labels">
-            <span>Débutant 400</span>
-            <span style="color:var(--yellow)">↑ 1400</span>
-            <span>Grand Maître 2500+</span>
-          </div>
-          <div class="elo-track">
-            <div class="elo-fill"></div>
-            <div class="elo-marker"></div>
-          </div>
+          <div class="elo-bar-labels"><span>Débutant 400</span><span style="color:var(--yellow)">↑ 1400</span><span>Grand Maître 2500+</span></div>
+          <div class="elo-track"><div class="elo-fill"></div><div class="elo-marker"></div></div>
         </div>
         <div>
-          <div class="hobby-name">♟ Échecs</div>
-          <br>
-          <div class="hobby-desc">La stratégie à l'état pur. Anticiper plusieurs coups d'avance, lire l'adversaire, tenir sous pression — des réflexes qui s'appliquent aussi bien à un audit de sécurité qu'à une partie de blitz. Atteindre 1400 ELO demande de la rigueur, de la constance, et une vraie compréhension du jeu positionnel.</div>
+          <div class="hobby-name">♟ Échecs</div><br>
+          <div class="hobby-desc">La stratégie à l'état pur. Anticiper plusieurs coups d'avance, lire l'adversaire, tenir sous pression — des réflexes qui s'appliquent aussi bien à un audit de sécurité qu'à une partie de blitz.</div>
           <div class="pieces">♔ ♕ ♗ ♘ ♖ ♙</div>
           <span class="hobby-badge y">stratégie · 1400 elo max</span>
         </div>
@@ -615,56 +415,16 @@ footer .g { color: var(--green); }
   <div class="max-w">
     <p class="sec-tag">04 — voyages</p>
     <h2 class="sec-title">8 pays, <em>∞ souvenirs</em></h2>
-    <p class="travels-intro">Voyager c'est compiler du monde réel. Chaque pays est un nouveau système à explorer — ses cultures, ses langues, ses gens. De l'Amérique Centrale aux Balkans, j'ai déjà bien scrollé la carte.</p>
+    <p class="travels-intro">Voyager c'est compiler du monde réel. Chaque pays est un nouveau système à explorer — ses cultures, ses langues, ses gens.</p>
     <div class="countries-grid">
-      <div class="country-card" style="--c:#00c853">
-        <span class="country-flag">🇨🇷</span>
-        <div class="country-name">Costa Rica</div>
-        <div class="country-region">Amérique Centrale</div>
-        <span class="country-note" style="background:rgba(0,200,83,0.08);border:1px solid rgba(0,200,83,0.2);color:#00c853">Pura vida 🌿</span>
-      </div>
-      <div class="country-card" style="--c:#4fc3f7">
-        <span class="country-flag">🇬🇵</span>
-        <div class="country-name">Guadeloupe</div>
-        <div class="country-region">Caraïbes · DOM</div>
-        <span class="country-note" style="background:rgba(79,195,247,0.08);border:1px solid rgba(79,195,247,0.2);color:var(--blue)">Île paradisiaque 🌊</span>
-      </div>
-      <div class="country-card" style="--c:#ff5252">
-        <span class="country-flag">🇪🇸</span>
-        <div class="country-name">Espagne</div>
-        <div class="country-region">Europe du Sud</div>
-        <span class="country-note" style="background:rgba(255,82,82,0.08);border:1px solid rgba(255,82,82,0.2);color:var(--red)">Fiesta ☀️</span>
-      </div>
-      <div class="country-card" style="--c:#69ff9d">
-        <span class="country-flag">🇮🇹</span>
-        <div class="country-name">Italie</div>
-        <div class="country-region">Europe du Sud</div>
-        <span class="country-note" style="background:rgba(105,255,157,0.08);border:1px solid rgba(105,255,157,0.2);color:var(--green2)">Dolce vita 🍕</span>
-      </div>
-      <div class="country-card" style="--c:#4fc3f7">
-        <span class="country-flag">🇭🇷</span>
-        <div class="country-name">Croatie</div>
-        <div class="country-region">Balkans · Adriatique</div>
-        <span class="country-note" style="background:rgba(79,195,247,0.08);border:1px solid rgba(79,195,247,0.2);color:var(--blue)">Côte imprenable 🏖️</span>
-      </div>
-      <div class="country-card" style="--c:#ffd740">
-        <span class="country-flag">🇲🇪</span>
-        <div class="country-name">Monténégro</div>
-        <div class="country-region">Balkans</div>
-        <span class="country-note" style="background:rgba(255,215,64,0.08);border:1px solid rgba(255,215,64,0.2);color:var(--yellow)">Paysages raw 🏔️</span>
-      </div>
-      <div class="country-card" style="--c:#ce93d8">
-        <span class="country-flag">🇸🇰</span>
-        <div class="country-name">Slovaquie</div>
-        <div class="country-region">Europe Centrale</div>
-        <span class="country-note" style="background:rgba(206,147,216,0.08);border:1px solid rgba(206,147,216,0.2);color:var(--purple)">Châteaux & forêts 🏰</span>
-      </div>
-      <div class="country-card" style="--c:#00bcd4">
-        <span class="country-flag">🇧🇦</span>
-        <div class="country-name">Bosnie</div>
-        <div class="country-region">Balkans</div>
-        <span class="country-note" style="background:rgba(0,188,212,0.08);border:1px solid rgba(0,188,212,0.2);color:var(--cyan)">Histoire profonde 🕌</span>
-      </div>
+      <div class="country-card" style="--c:#00c853"><span class="country-flag">🇨🇷</span><div class="country-name">Costa Rica</div><div class="country-region">Amérique Centrale</div><span class="country-note" style="background:rgba(0,200,83,.08);border:1px solid rgba(0,200,83,.2);color:#00c853">Pura vida 🌿</span></div>
+      <div class="country-card" style="--c:var(--blue)"><span class="country-flag">🇬🇵</span><div class="country-name">Guadeloupe</div><div class="country-region">Caraïbes · DOM</div><span class="country-note" style="background:rgba(79,195,247,.08);border:1px solid rgba(79,195,247,.2);color:var(--blue)">Île paradisiaque 🌊</span></div>
+      <div class="country-card" style="--c:var(--red)"><span class="country-flag">🇪🇸</span><div class="country-name">Espagne</div><div class="country-region">Europe du Sud</div><span class="country-note" style="background:rgba(255,82,82,.08);border:1px solid rgba(255,82,82,.2);color:var(--red)">Fiesta ☀️</span></div>
+      <div class="country-card" style="--c:var(--green2)"><span class="country-flag">🇮🇹</span><div class="country-name">Italie</div><div class="country-region">Europe du Sud</div><span class="country-note" style="background:rgba(105,255,157,.08);border:1px solid rgba(105,255,157,.2);color:var(--green2)">Dolce vita 🍕</span></div>
+      <div class="country-card" style="--c:var(--blue)"><span class="country-flag">🇭🇷</span><div class="country-name">Croatie</div><div class="country-region">Balkans · Adriatique</div><span class="country-note" style="background:rgba(79,195,247,.08);border:1px solid rgba(79,195,247,.2);color:var(--blue)">Côte imprenable 🏖️</span></div>
+      <div class="country-card" style="--c:var(--yellow)"><span class="country-flag">🇲🇪</span><div class="country-name">Monténégro</div><div class="country-region">Balkans</div><span class="country-note" style="background:rgba(255,215,64,.08);border:1px solid rgba(255,215,64,.2);color:var(--yellow)">Paysages raw 🏔️</span></div>
+      <div class="country-card" style="--c:var(--purple)"><span class="country-flag">🇸🇰</span><div class="country-name">Slovaquie</div><div class="country-region">Europe Centrale</div><span class="country-note" style="background:rgba(206,147,216,.08);border:1px solid rgba(206,147,216,.2);color:var(--purple)">Châteaux & forêts 🏰</span></div>
+      <div class="country-card" style="--c:var(--cyan)"><span class="country-flag">🇧🇦</span><div class="country-name">Bosnie</div><div class="country-region">Balkans</div><span class="country-note" style="background:rgba(0,188,212,.08);border:1px solid rgba(0,188,212,.2);color:var(--cyan)">Histoire profonde 🕌</span></div>
     </div>
   </div>
 </section>
@@ -675,42 +435,12 @@ footer .g { color: var(--green); }
     <p class="sec-tag">05 — projets</p>
     <h2 class="sec-title">Ce que j'ai <em>construit</em></h2>
     <div class="projects-grid">
-      <div class="proj-card">
-        <div class="proj-top"><span class="proj-icon">🔐</span><a href="https://github.com/juto222/Password-Manger" target="_blank" class="proj-gh">↗ GitHub</a></div>
-        <div class="proj-name">Password Manager</div>
-        <div class="proj-desc">Gestionnaire de mots de passe sécurisé en Python. Code disponible sur demande via Discord. Un vrai projet de sécurité, fonctionnel et utile.</div>
-        <div class="proj-foot"><span class="proj-lang">Python</span><span class="proj-stars">★ 1</span></div>
-      </div>
-      <div class="proj-card">
-        <div class="proj-top"><span class="proj-icon">🏫</span><a href="https://github.com/juto222/Projet-Lyc-e" target="_blank" class="proj-gh">↗ GitHub</a></div>
-        <div class="proj-name">Projet Lycée</div>
-        <div class="proj-desc">Projet scolaire réalisé en Python dans le cadre de ma Terminale Pro CIEL. Mise en pratique des compétences acquises en cours.</div>
-        <div class="proj-foot"><span class="proj-lang">Python</span><span class="proj-stars">★ 1</span></div>
-      </div>
-      <div class="proj-card">
-        <div class="proj-top"><span class="proj-icon">💻</span><a href="https://github.com/juto222/ECORP" target="_blank" class="proj-gh">↗ GitHub</a></div>
-        <div class="proj-name">ECORP</div>
-        <div class="proj-desc">Projet HTML "just for fun". Expérimentation libre, inspiré de la culture hacker et de l'univers tech underground. La créativité avant tout.</div>
-        <div class="proj-foot"><span class="proj-lang">HTML</span><span class="proj-stars">★ 1</span></div>
-      </div>
-      <div class="proj-card">
-        <div class="proj-top"><span class="proj-icon">📋</span><a href="https://github.com/juto222/Menu-d-roulant" target="_blank" class="proj-gh">↗ GitHub</a></div>
-        <div class="proj-name">Menu Déroulant</div>
-        <div class="proj-desc">Composant menu interactif en Python. Exercice pratique sur la gestion d'interfaces et la logique de navigation en ligne de commande.</div>
-        <div class="proj-foot"><span class="proj-lang">Python</span><span class="proj-stars">★ 1</span></div>
-      </div>
-      <div class="proj-card">
-        <div class="proj-top"><span class="proj-icon">🎲</span><a href="https://github.com/juto222/Random-Team" target="_blank" class="proj-gh">↗ GitHub</a></div>
-        <div class="proj-name">Random Team</div>
-        <div class="proj-desc">Générateur d'équipes aléatoires. Né d'un besoin réel entre amis pour le foot — l'utilité est la meilleure motivation pour coder.</div>
-        <div class="proj-foot"><span class="proj-lang">Python</span><span class="proj-stars">★ 0</span></div>
-      </div>
-      <div class="proj-card">
-        <div class="proj-top"><span class="proj-icon">🌟</span><a href="https://github.com/juto222/Portfolio" target="_blank" class="proj-gh">↗ GitHub</a></div>
-        <div class="proj-name">Portfolio</div>
-        <div class="proj-desc">Mon portfolio HTML original — le point de départ de ma présence en ligne. En constante amélioration au fil de mon apprentissage.</div>
-        <div class="proj-foot"><span class="proj-lang">HTML</span><span class="proj-stars">★ 0</span></div>
-      </div>
+      <div class="proj-card"><div class="proj-top"><span class="proj-icon">🔐</span><a href="https://github.com/juto222/Password-Manger" target="_blank" class="proj-gh">↗ GitHub</a></div><div class="proj-name">Password Manager</div><div class="proj-desc">Gestionnaire de mots de passe sécurisé en Python. Code disponible sur demande via Discord.</div><div class="proj-foot"><span class="proj-lang">Python</span><span class="proj-stars">★ 1</span></div></div>
+      <div class="proj-card"><div class="proj-top"><span class="proj-icon">🏫</span><a href="https://github.com/juto222/Projet-Lyc-e" target="_blank" class="proj-gh">↗ GitHub</a></div><div class="proj-name">Projet Lycée</div><div class="proj-desc">Projet scolaire Python réalisé en Terminale Pro CIEL. Mise en pratique des compétences acquises.</div><div class="proj-foot"><span class="proj-lang">Python</span><span class="proj-stars">★ 1</span></div></div>
+      <div class="proj-card"><div class="proj-top"><span class="proj-icon">💻</span><a href="https://github.com/juto222/ECORP" target="_blank" class="proj-gh">↗ GitHub</a></div><div class="proj-name">ECORP</div><div class="proj-desc">Projet HTML inspiré de la culture hacker et de l'univers tech underground. Just for fun.</div><div class="proj-foot"><span class="proj-lang">HTML</span><span class="proj-stars">★ 1</span></div></div>
+      <div class="proj-card"><div class="proj-top"><span class="proj-icon">📋</span><a href="https://github.com/juto222/Menu-d-roulant" target="_blank" class="proj-gh">↗ GitHub</a></div><div class="proj-name">Menu Déroulant</div><div class="proj-desc">Composant menu interactif en Python. Exercice sur la gestion d'interfaces CLI.</div><div class="proj-foot"><span class="proj-lang">Python</span><span class="proj-stars">★ 1</span></div></div>
+      <div class="proj-card"><div class="proj-top"><span class="proj-icon">🎲</span><a href="https://github.com/juto222/Random-Team" target="_blank" class="proj-gh">↗ GitHub</a></div><div class="proj-name">Random Team</div><div class="proj-desc">Générateur d'équipes aléatoires. Né d'un besoin réel entre amis pour le foot.</div><div class="proj-foot"><span class="proj-lang">Python</span><span class="proj-stars">★ 0</span></div></div>
+      <div class="proj-card"><div class="proj-top"><span class="proj-icon">🌟</span><a href="https://github.com/juto222/Portfolio" target="_blank" class="proj-gh">↗ GitHub</a></div><div class="proj-name">Portfolio</div><div class="proj-desc">Mon portfolio HTML original — point de départ de ma présence en ligne. Toujours en évolution.</div><div class="proj-foot"><span class="proj-lang">HTML</span><span class="proj-stars">★ 0</span></div></div>
     </div>
   </div>
 </section>
@@ -720,34 +450,12 @@ footer .g { color: var(--green); }
   <div class="max-w">
     <p class="sec-tag">06 — objectif</p>
     <h2 class="sec-title">Devenir <em>Pentester</em></h2>
-    <p style="font-size:0.85rem;color:var(--muted);max-width:600px;margin-bottom:3rem;line-height:1.9">
-      Le <strong style="color:var(--text)">pentesting</strong> consiste à attaquer légalement des systèmes pour en trouver les failles avant les hackers malveillants. Technique offensive, logique, créativité — exactement ce qui me passionne.
-    </p>
+    <p style="font-size:.85rem;color:var(--muted);max-width:600px;margin-bottom:3rem;line-height:1.9">Le <strong style="color:var(--text)">pentesting</strong> consiste à attaquer légalement des systèmes pour en trouver les failles avant les hackers malveillants. Technique offensive, logique, créativité — exactement ce qui me passionne.</p>
     <div class="roadmap">
-      <div class="rm-step">
-        <div class="rm-dot done">✓</div>
-        <div class="rm-tag done">terminé</div>
-        <div class="rm-name">Bac Pro CIEL</div>
-        <div class="rm-desc">Bases solides en Python, HTML, réseaux et cybersécurité.</div>
-      </div>
-      <div class="rm-step">
-        <div class="rm-dot active">▶</div>
-        <div class="rm-tag active">en cours</div>
-        <div class="rm-name">Projets & GitHub</div>
-        <div class="rm-desc">Projets concrets, portfolio solide, apprentissage autodidacte.</div>
-      </div>
-      <div class="rm-step">
-        <div class="rm-dot next">3</div>
-        <div class="rm-tag next">prochaine étape</div>
-        <div class="rm-name">BTS SIO SISR</div>
-        <div class="rm-desc">Spécialisation réseau et sécurité, Linux avancé, administration réseau.</div>
-      </div>
-      <div class="rm-step">
-        <div class="rm-dot goal">🎯</div>
-        <div class="rm-tag goal">objectif final</div>
-        <div class="rm-name">Pentester Certifié</div>
-        <div class="rm-desc">OSCP, CEH — expert en tests d'intrusion et opérations red team.</div>
-      </div>
+      <div class="rm-step"><div class="rm-dot done">✓</div><div class="rm-tag done">terminé</div><div class="rm-name">Bac Pro CIEL</div><div class="rm-desc">Bases solides en Python, HTML, réseaux et cybersécurité.</div></div>
+      <div class="rm-step"><div class="rm-dot active">▶</div><div class="rm-tag active">en cours</div><div class="rm-name">Projets & GitHub</div><div class="rm-desc">Projets concrets, portfolio solide, apprentissage autodidacte.</div></div>
+      <div class="rm-step"><div class="rm-dot next">3</div><div class="rm-tag next">prochaine étape</div><div class="rm-name">BTS SIO SISR</div><div class="rm-desc">Spécialisation réseau et sécurité, Linux avancé, administration réseau.</div></div>
+      <div class="rm-step"><div class="rm-dot goal">🎯</div><div class="rm-tag goal">objectif final</div><div class="rm-name">Pentester Certifié</div><div class="rm-desc">OSCP, CEH — expert en tests d'intrusion et opérations red team.</div></div>
     </div>
   </div>
 </section>
@@ -758,24 +466,9 @@ footer .g { color: var(--green); }
     <p class="sec-tag">07 — langues</p>
     <h2 class="sec-title">Je parle <em>3 langues</em></h2>
     <div class="lang-grid">
-      <div class="lang-card">
-        <span class="lang-flag">🇫🇷</span>
-        <div class="lang-name">Français</div>
-        <div class="lang-lvl">Natif — Langue maternelle</div>
-        <div class="lang-bar-bg"><div class="lang-bar" style="--w:100%"></div></div>
-      </div>
-      <div class="lang-card">
-        <span class="lang-flag">🇬🇧</span>
-        <div class="lang-name">Anglais</div>
-        <div class="lang-lvl">Bon niveau — Lecture, écriture, conversation</div>
-        <div class="lang-bar-bg"><div class="lang-bar" style="--w:72%"></div></div>
-      </div>
-      <div class="lang-card">
-        <span class="lang-flag">🇪🇸</span>
-        <div class="lang-name">Espagnol</div>
-        <div class="lang-lvl">Notions — Bases acquises</div>
-        <div class="lang-bar-bg"><div class="lang-bar" style="--w:35%"></div></div>
-      </div>
+      <div class="lang-card"><span class="lang-flag">🇫🇷</span><div class="lang-name">Français</div><div class="lang-lvl">Natif — Langue maternelle</div><div class="lang-bar-bg"><div class="lang-bar" style="--w:100%"></div></div></div>
+      <div class="lang-card"><span class="lang-flag">🇬🇧</span><div class="lang-name">Anglais</div><div class="lang-lvl">Bon niveau — Lecture, écriture, conversation</div><div class="lang-bar-bg"><div class="lang-bar" style="--w:72%"></div></div></div>
+      <div class="lang-card"><span class="lang-flag">🇪🇸</span><div class="lang-name">Espagnol</div><div class="lang-lvl">Notions — Bases acquises</div><div class="lang-bar-bg"><div class="lang-bar" style="--w:35%"></div></div></div>
     </div>
   </div>
 </section>
@@ -787,51 +480,40 @@ footer .g { color: var(--green); }
     <h2 class="sec-title">On reste <em>en contact</em> ?</h2>
     <div class="contact-layout">
       <div class="contact-body">
-        <p>Tu as un projet à partager, une question sur la cybersécurité, ou juste envie d'échanger sur le code ? <strong>Je suis ouvert à tout.</strong></p>
-        <p>Meilleurs canaux : <strong>Discord</strong> ou <strong>GitHub</strong>. Je réponds dès que possible.</p>
-        <div class="avail-badge"><span class="avail-dot"></span>disponible pour collaborations & stages</div>
+        <p>Tu as un projet à partager, une question sur la cybersécurité, ou tu veux me commander une prestation ? <strong>Je suis ouvert à tout.</strong></p>
+        <p>Meilleur canal : <strong>Discord user30222</strong>. Je réponds dès que possible.</p>
+        <div class="avail-badge"><span class="avail-dot"></span>disponible pour collaborations, projets & stages</div>
       </div>
       <div class="contact-links">
-        <a href="https://github.com/juto222" target="_blank" class="clink">
-          <span class="clink-icon">🐙</span>
-          <div class="clink-body"><span class="clink-name">GitHub</span><span class="clink-val">github.com/juto222</span></div>
-          <span class="clink-arr">→</span>
-        </a>
-        <div class="clink">
-          <span class="clink-icon">💬</span>
-          <div class="clink-body"><span class="clink-name">Discord</span><span class="clink-val">user30222</span></div>
-          <span class="clink-arr">→</span>
-        </div>
-        <div class="clink">
-          <span class="clink-icon">🎓</span>
-          <div class="clink-body"><span class="clink-name">Formation</span><span class="clink-val">Terminale Pro CIEL</span></div>
-          <span class="clink-arr">→</span>
-        </div>
+        <a href="https://github.com/juto222" target="_blank" class="clink"><span class="clink-icon">🐙</span><div class="clink-body"><span class="clink-name">GitHub</span><span class="clink-val">github.com/juto222</span></div><span class="clink-arr">→</span></a>
+        <div class="clink"><span class="clink-icon">💬</span><div class="clink-body"><span class="clink-name">Discord</span><span class="clink-val">user30222</span></div><span class="clink-arr">→</span></div>
+        <a href="services.html" class="clink" style="border-color:rgba(255,215,64,.2)"><span class="clink-icon">💼</span><div class="clink-body"><span class="clink-name" style="color:var(--yellow)">Services & Tarifs</span><span class="clink-val">30+ prestations · prix négociables</span></div><span class="clink-arr" style="color:var(--yellow)">→</span></a>
       </div>
     </div>
   </div>
 </section>
 
 <footer>
-  <p>© 2026 <span class="g">juto222</span> — Tous droits réservés</p>
+  <p>© 2026 <span class="fg">juto222</span> — Tous droits réservés</p>
   <p>Fait avec ♥ · Powered by Python & HTML · Inspiré de ECORP</p>
 </footer>
 
 <script>
-  const io = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('on'); });
-  }, { threshold: 0.3 });
-  document.querySelectorAll('.bar-fill, .lang-bar, .elo-fill').forEach(el => io.observe(el));
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('on'); });
+}, { threshold: 0.3 });
+document.querySelectorAll('.bar-fill, .lang-bar, .elo-fill').forEach(el => io.observe(el));
 
-  const sections = document.querySelectorAll('section[id]');
-  const navAs = document.querySelectorAll('.nav-links a');
-  window.addEventListener('scroll', () => {
-    let cur = '';
-    sections.forEach(s => { if (window.scrollY >= s.offsetTop - 120) cur = s.id; });
-    navAs.forEach(a => {
-      a.style.color = a.getAttribute('href') === `#${cur}` ? 'var(--green)' : '';
-    });
+const sections = document.querySelectorAll('section[id]');
+const navAs = document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 120) cur = s.id; });
+  navAs.forEach(a => {
+    const h = a.getAttribute('href');
+    if (h && h.startsWith('#')) a.style.color = h === `#${cur}` ? 'var(--green)' : '';
   });
+});
 </script>
 </body>
 </html>
