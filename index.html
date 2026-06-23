@@ -3,517 +3,1189 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>juto222 — Portfolio</title>
+<title>Julien — Développeur Freelance</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
-:root{
-  --bg:#0a0c0f;--bg2:#0d1117;--surface:#141c26;--border:#1e2d3d;--border2:#243344;
-  --green:#00e676;--green2:#69ff9d;--cyan:#00bcd4;--blue:#4fc3f7;
-  --yellow:#ffd740;--red:#ff5252;--purple:#ce93d8;--orange:#ff9100;
-  --text:#b0c4d8;--muted:#3d5166;--dim:#1e3048;--heading:#e4f0ff;
-  --mono:'JetBrains Mono',monospace;
+:root {
+  --white: #ffffff;
+  --gray-50: #f8fafc;
+  --gray-100: #f1f5f9;
+  --gray-200: #e2e8f0;
+  --gray-300: #cbd5e1;
+  --gray-400: #94a3b8;
+  --gray-500: #64748b;
+  --gray-600: #475569;
+  --gray-700: #334155;
+  --gray-800: #1e293b;
+  --gray-900: #0f172a;
+  --blue-50: #eff6ff;
+  --blue-100: #dbeafe;
+  --blue-500: #3b82f6;
+  --blue-600: #2563eb;
+  --blue-700: #1d4ed8;
+  --blue-800: #1e40af;
+  --blue-900: #1e3a8a;
+  --font: 'Inter', sans-serif;
 }
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--text);font-family:var(--mono);font-size:14px;line-height:1.7;overflow-x:hidden}
-body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,.06) 2px,rgba(0,0,0,.06) 4px);pointer-events:none;z-index:9999}
-::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--border2);border-radius:2px}
 
-nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:.9rem 2.5rem;background:rgba(10,12,15,.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
-.nav-logo{color:var(--green);font-size:.9rem;font-weight:700;letter-spacing:.05em}
-.nav-logo span{color:var(--muted);font-weight:400}
-.nav-links{display:flex;gap:1.75rem;list-style:none}
-.nav-links a{color:var(--muted);text-decoration:none;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;transition:color .2s}
-.nav-links a:hover{color:var(--green)}
-.nav-links a.services-link{color:var(--yellow);border:1px solid rgba(255,215,64,.25);padding:.25rem .65rem;border-radius:2px}
-.nav-links a.services-link:hover{color:var(--yellow);border-color:var(--yellow);background:rgba(255,215,64,.06)}
-.nav-dot{display:flex;align-items:center;gap:.5rem;font-size:.7rem;color:var(--green)}
-.nav-dot::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--green);animation:bl 2s ease-in-out infinite}
-@keyframes bl{0%,100%{opacity:1}50%{opacity:.3}}
-@keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--gray-700);
+  background: var(--white);
+  overflow-x: hidden;
+}
 
-#hero{min-height:100vh;display:flex;align-items:center;padding:7rem 2.5rem 3rem;position:relative;overflow:hidden}
-.hero-bg-grid{position:absolute;inset:0;background-image:linear-gradient(var(--dim) 1px,transparent 1px),linear-gradient(90deg,var(--dim) 1px,transparent 1px);background-size:48px 48px;opacity:.35;mask-image:radial-gradient(ellipse 80% 70% at 30% 50%,black 20%,transparent 80%)}
-.hero-glow{position:absolute;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(0,230,118,.07) 0%,transparent 65%);top:50%;left:20%;transform:translate(-50%,-50%);pointer-events:none}
-.hero-inner{position:relative;max-width:820px}
-.prompt-line{display:flex;align-items:center;gap:.5rem;font-size:.78rem;color:var(--muted);margin-bottom:1.2rem;opacity:0;animation:fadeIn .5s .1s forwards}
-.pu{color:var(--green)}.ph{color:var(--cyan)}.pp{color:var(--blue)}
-.hero-title{font-size:clamp(3rem,8vw,6.5rem);font-weight:700;line-height:1;letter-spacing:-.02em;color:var(--heading);margin-bottom:1rem;opacity:0;animation:fadeIn .5s .25s forwards}
-.hero-title .g{color:var(--green)}.hero-title .m{color:var(--muted);font-weight:300}
-.hero-tagline{font-size:.85rem;color:var(--muted);margin-bottom:2rem;max-width:540px;line-height:1.9;opacity:0;animation:fadeIn .5s .4s forwards}
-.hero-tagline .hl{color:var(--green)}.hero-tagline .hl2{color:var(--cyan)}
-.terminal-block{background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:1.25rem 1.5rem;margin-bottom:2rem;max-width:560px;opacity:0;animation:fadeIn .5s .55s forwards}
-.t-line{display:flex;gap:.75rem;margin-bottom:.25rem}
-.t-prompt{color:var(--green)}.t-key{color:var(--cyan);min-width:110px}.t-val{color:var(--text)}.t-ok{color:var(--green)}.t-y{color:var(--yellow)}
-.t-cursor{display:inline-block;width:8px;height:14px;background:var(--green);vertical-align:middle;animation:bl 1s step-end infinite;margin-left:2px}
-.hero-btns{display:flex;gap:1rem;flex-wrap:wrap;opacity:0;animation:fadeIn .5s .7s forwards}
-.btn{font-family:var(--mono);font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;padding:.65rem 1.5rem;border-radius:3px;transition:all .2s;display:inline-flex;align-items:center;gap:.4rem}
-.btn-g{background:var(--green);color:var(--bg);font-weight:600}.btn-g:hover{background:var(--green2);box-shadow:0 0 20px rgba(0,230,118,.25);transform:translateY(-1px)}
-.btn-ghost{border:1px solid var(--border2);color:var(--muted)}.btn-ghost:hover{border-color:var(--cyan);color:var(--cyan);transform:translateY(-1px)}
-.btn-y{background:rgba(255,215,64,.1);border:1px solid rgba(255,215,64,.35);color:var(--yellow)}.btn-y:hover{background:rgba(255,215,64,.18);border-color:var(--yellow);box-shadow:0 0 16px rgba(255,215,64,.15);transform:translateY(-1px)}
-.hero-stats{position:absolute;right:0;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:1.5rem;text-align:right;opacity:0;animation:fadeIn .5s .85s forwards}
-.stat-num{font-size:2.4rem;font-weight:700;color:var(--heading);line-height:1;display:block}
-.stat-lbl{font-size:.6rem;color:var(--muted);letter-spacing:.15em;text-transform:uppercase}
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--gray-100); }
+::-webkit-scrollbar-thumb { background: var(--blue-500); border-radius: 3px; }
 
-section{padding:5.5rem 2.5rem;border-top:1px solid var(--border)}
-.max-w{max-width:1000px;margin:0 auto}
-.sec-tag{font-size:.68rem;color:var(--green);letter-spacing:.2em;text-transform:uppercase;margin-bottom:.5rem;display:flex;align-items:center;gap:.6rem}
-.sec-tag::before{content:'//';color:var(--muted)}
-.sec-title{font-size:clamp(1.6rem,3.5vw,2.8rem);font-weight:700;color:var(--heading);letter-spacing:-.02em;margin-bottom:2.5rem;line-height:1.1}
-.sec-title em{font-style:normal;color:var(--green)}
+/* ── NAVIGATION ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 3rem; height: 68px;
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--gray-200);
+  transition: box-shadow .3s;
+}
+nav.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,.08); }
+.nav-logo {
+  font-size: 1.1rem; font-weight: 800; color: var(--gray-900);
+  text-decoration: none; letter-spacing: -.02em;
+}
+.nav-logo span { color: var(--blue-600); }
+.nav-links { display: flex; gap: 2rem; list-style: none; }
+.nav-links a {
+  color: var(--gray-500); text-decoration: none;
+  font-size: .875rem; font-weight: 500;
+  transition: color .2s; letter-spacing: .01em;
+}
+.nav-links a:hover, .nav-links a.active { color: var(--blue-600); }
+.nav-cta {
+  background: var(--blue-600); color: var(--white);
+  text-decoration: none; font-size: .8rem; font-weight: 600;
+  padding: .55rem 1.25rem; border-radius: 6px;
+  letter-spacing: .02em; transition: all .2s;
+}
+.nav-cta:hover { background: var(--blue-700); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(37,99,235,.3); }
+.nav-avail {
+  display: flex; align-items: center; gap: .5rem;
+  font-size: .75rem; font-weight: 600; color: #059669;
+  background: #ecfdf5; padding: .35rem .75rem; border-radius: 20px;
+  border: 1px solid #a7f3d0;
+}
+.nav-avail::before {
+  content: ''; width: 6px; height: 6px; border-radius: 50%;
+  background: #059669; animation: pulse-green 2s infinite;
+}
+@keyframes pulse-green {
+  0%, 100% { opacity: 1; }
+  50% { opacity: .4; }
+}
 
-/* SERVICES TEASER */
-#services-teaser{background:var(--bg2)}
-.svc-teaser-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem;margin-bottom:2rem}
-.svc-mini{background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:1.25rem;transition:all .25s;position:relative;overflow:hidden}
-.svc-mini::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--c,var(--green));transform:scaleX(0);transform-origin:left;transition:transform .3s}
-.svc-mini:hover::after{transform:scaleX(1)}
-.svc-mini:hover{border-color:rgba(0,230,118,.15);transform:translateY(-3px)}
-.svc-mini-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.5rem}
-.svc-mini-icon{font-size:1.3rem}
-.svc-mini-price{font-size:.75rem;font-weight:700;color:var(--yellow)}
-.svc-mini-name{font-size:.85rem;font-weight:700;color:var(--heading);margin-bottom:.3rem}
-.svc-mini-desc{font-size:.74rem;color:var(--muted);line-height:1.65}
-.svc-cta{background:linear-gradient(135deg,#141c26,#1a2535);border:1px solid rgba(255,215,64,.2);border-radius:5px;padding:1.75rem 2rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;position:relative;overflow:hidden}
-.svc-cta::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--yellow),var(--orange),var(--green))}
-.svc-cta-left{}
-.svc-cta-title{font-size:1rem;font-weight:700;color:var(--heading);margin-bottom:.35rem}
-.svc-cta-sub{font-size:.78rem;color:var(--muted);line-height:1.7}
-.svc-cta-sub strong{color:var(--text)}
-.svc-cta-btns{display:flex;gap:.75rem;flex-shrink:0}
+/* ── HERO ── */
+#hero {
+  min-height: 100vh;
+  display: grid; grid-template-columns: 1fr 1fr;
+  align-items: center; gap: 0;
+  padding-top: 68px;
+  position: relative; overflow: hidden;
+}
+.hero-left {
+  padding: 5rem 3rem 5rem 3rem;
+  position: relative; z-index: 2;
+}
+.hero-right {
+  background: var(--blue-800);
+  min-height: calc(100vh - 68px);
+  position: relative;
+  display: flex; align-items: center; justify-content: center;
+  padding: 4rem 3rem;
+  clip-path: polygon(6% 0, 100% 0, 100% 100%, 0% 100%);
+}
+.hero-right-bg {
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, var(--blue-900) 0%, var(--blue-700) 60%, var(--blue-500) 100%);
+  opacity: .9;
+}
+.hero-right-pattern {
+  position: absolute; inset: 0; opacity: .04;
+  background-image: radial-gradient(var(--white) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: .5rem;
+  font-size: .75rem; font-weight: 700; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--blue-600);
+  background: var(--blue-50); padding: .35rem .85rem;
+  border-radius: 4px; border: 1px solid var(--blue-100);
+  margin-bottom: 1.5rem;
+}
+.hero-title {
+  font-size: clamp(2.5rem, 4.5vw, 4rem);
+  font-weight: 900; line-height: 1.05;
+  color: var(--gray-900); letter-spacing: -.03em;
+  margin-bottom: 1.25rem;
+}
+.hero-title .accent { color: var(--blue-600); }
+.hero-sub {
+  font-size: 1.05rem; color: var(--gray-500);
+  line-height: 1.75; margin-bottom: 2.5rem; max-width: 440px;
+  font-weight: 400;
+}
+.hero-sub strong { color: var(--gray-700); font-weight: 600; }
+.hero-btns { display: flex; gap: .85rem; flex-wrap: wrap; margin-bottom: 3rem; }
+.btn {
+  font-family: var(--font); font-size: .875rem; font-weight: 600;
+  text-decoration: none; padding: .75rem 1.6rem; border-radius: 7px;
+  display: inline-flex; align-items: center; gap: .45rem;
+  transition: all .2s; cursor: pointer; border: none;
+  letter-spacing: .01em;
+}
+.btn-primary { background: var(--blue-600); color: var(--white); }
+.btn-primary:hover { background: var(--blue-700); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(37,99,235,.35); }
+.btn-outline { border: 1.5px solid var(--gray-300); color: var(--gray-700); background: transparent; }
+.btn-outline:hover { border-color: var(--blue-500); color: var(--blue-600); transform: translateY(-1px); }
+.btn-discord { background: #5865f2; color: var(--white); }
+.btn-discord:hover { background: #4752c4; transform: translateY(-2px); box-shadow: 0 6px 18px rgba(88,101,242,.35); }
+.hero-metrics {
+  display: flex; gap: 2.5rem;
+  padding-top: 2.5rem; border-top: 1px solid var(--gray-200);
+}
+.metric-num { font-size: 1.75rem; font-weight: 800; color: var(--gray-900); line-height: 1; display: block; }
+.metric-lbl { font-size: .75rem; color: var(--gray-400); font-weight: 500; letter-spacing: .05em; }
 
-/* ABOUT */
-#about{background:var(--bg2)}
-.about-layout{display:grid;grid-template-columns:1fr 1.1fr;gap:4rem;align-items:start}
-.about-text p{color:var(--muted);margin-bottom:.9rem;font-size:.88rem;line-height:1.9}
-.about-text strong{color:var(--text)}
-.info-table{width:100%;border-collapse:collapse}
-.info-table tr{border-bottom:1px solid var(--border)}
-.info-table tr:last-child{border-bottom:none}
-.info-table td{padding:.7rem 0;font-size:.82rem}
-.info-table td:first-child{color:var(--muted);width:38%}
-.info-table td:last-child{color:var(--text)}
-.tag-g{display:inline-block;background:rgba(0,230,118,.08);border:1px solid rgba(0,230,118,.2);color:var(--green);font-size:.65rem;padding:.15rem .5rem;border-radius:2px;letter-spacing:.08em}
+/* Card on hero right */
+.hero-card {
+  position: relative; z-index: 2;
+  background: rgba(255,255,255,.07);
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 16px; padding: 2rem;
+  backdrop-filter: blur(8px); width: 100%; max-width: 380px;
+}
+.hc-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.75rem; }
+.hc-avatar {
+  width: 52px; height: 52px; border-radius: 12px;
+  background: linear-gradient(135deg, var(--blue-400, #60a5fa), var(--blue-600));
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.4rem; font-weight: 800; color: white;
+  flex-shrink: 0;
+}
+.hc-name { font-size: 1rem; font-weight: 700; color: white; }
+.hc-role { font-size: .78rem; color: rgba(255,255,255,.55); margin-top: .1rem; }
+.hc-row {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: .65rem 0; border-bottom: 1px solid rgba(255,255,255,.07);
+  font-size: .8rem;
+}
+.hc-row:last-of-type { border-bottom: none; }
+.hc-key { color: rgba(255,255,255,.45); font-weight: 500; }
+.hc-val { color: rgba(255,255,255,.9); font-weight: 600; }
+.hc-val.green { color: #4ade80; }
+.hc-val.yellow { color: #fbbf24; }
+.hc-val.blue { color: #93c5fd; }
+.hc-badge {
+  display: inline-block; padding: .18rem .55rem; border-radius: 4px;
+  font-size: .68rem; font-weight: 700; letter-spacing: .06em;
+}
+.hc-badge.green { background: rgba(74,222,128,.15); color: #4ade80; border: 1px solid rgba(74,222,128,.25); }
+.hc-badge.blue { background: rgba(147,197,253,.12); color: #93c5fd; border: 1px solid rgba(147,197,253,.22); }
 
-/* SKILLS */
-.skills-layout{display:grid;grid-template-columns:1fr 1fr;gap:3rem}
-.skill-group-hd{font-size:.68rem;color:var(--muted);letter-spacing:.15em;text-transform:uppercase;margin-bottom:1.5rem;display:flex;align-items:center;gap:.75rem}
-.skill-group-hd::after{content:'';flex:1;height:1px;background:var(--border)}
-.skill-row{margin-bottom:1.2rem}
-.skill-head{display:flex;justify-content:space-between;margin-bottom:.4rem}
-.skill-name{font-size:.82rem;color:var(--text)}
-.skill-pct{font-size:.72rem;color:var(--muted)}
-.bar-bg{height:2px;background:var(--border);border-radius:1px;overflow:hidden}
-.bar-fill{height:100%;border-radius:1px;width:0;transition:width 1.3s cubic-bezier(.16,1,.3,1)}
-.bar-fill.dev{background:linear-gradient(90deg,var(--green),var(--cyan))}
-.bar-fill.sec{background:linear-gradient(90deg,var(--red),var(--yellow))}
-.bar-fill.on{width:var(--w)}
+/* ── SECTIONS GENERIC ── */
+section { padding: 6rem 3rem; }
+.max-w { max-width: 1080px; margin: 0 auto; }
+.sec-eyebrow {
+  font-size: .7rem; font-weight: 700; letter-spacing: .18em;
+  text-transform: uppercase; color: var(--blue-600);
+  margin-bottom: .6rem; display: flex; align-items: center; gap: .6rem;
+}
+.sec-eyebrow::before { content: ''; width: 24px; height: 2px; background: var(--blue-600); border-radius: 1px; }
+.sec-title {
+  font-size: clamp(1.7rem, 3vw, 2.6rem); font-weight: 800;
+  color: var(--gray-900); letter-spacing: -.03em; line-height: 1.1;
+  margin-bottom: 1rem;
+}
+.sec-title em { font-style: normal; color: var(--blue-600); }
+.sec-desc { font-size: .95rem; color: var(--gray-500); max-width: 580px; line-height: 1.8; margin-bottom: 3rem; }
 
-/* HOBBIES */
-#hobbies{background:var(--bg2)}
-.hobbies-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
-.hobby-card{background:var(--surface);border:1px solid var(--border);padding:1.5rem;border-radius:4px;transition:all .25s;position:relative;overflow:hidden}
-.hobby-card::before{content:attr(data-num);position:absolute;top:1rem;right:1rem;font-size:.62rem;color:var(--dim);letter-spacing:.1em}
-.hobby-card:hover{border-color:rgba(0,230,118,.25);transform:translateY(-3px)}
-.hobby-icon{font-size:1.6rem;margin-bottom:.75rem;display:block}
-.hobby-name{font-size:.9rem;font-weight:600;color:var(--heading);margin-bottom:.4rem}
-.hobby-desc{font-size:.78rem;color:var(--muted);line-height:1.7}
-.hobby-badge{display:inline-block;margin-top:.75rem;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;padding:.15rem .5rem;border-radius:2px;border:1px solid var(--border2);color:var(--muted)}
-.hobby-badge.g{border-color:rgba(0,230,118,.3);color:var(--green);background:rgba(0,230,118,.06)}
-.hobby-badge.y{border-color:rgba(255,215,64,.3);color:var(--yellow);background:rgba(255,215,64,.06)}
-.elo-widget{background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:1.5rem;grid-column:span 2;display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:center}
-.elo-label{font-size:.68rem;color:var(--muted);letter-spacing:.15em;text-transform:uppercase;margin-bottom:.5rem}
-.elo-num{font-size:3.5rem;font-weight:700;color:var(--yellow);line-height:1;margin-bottom:.3rem}
-.elo-sub{font-size:.75rem;color:var(--muted)}
-.elo-bar-labels{display:flex;justify-content:space-between;font-size:.62rem;color:var(--muted);margin:1.25rem 0 .35rem}
-.elo-track{height:4px;background:var(--border);border-radius:2px;position:relative}
-.elo-fill{height:100%;border-radius:2px;background:linear-gradient(90deg,var(--muted),var(--yellow));width:0;transition:width 1.4s cubic-bezier(.16,1,.3,1)}
-.elo-fill.on{width:56%}
-.elo-marker{position:absolute;top:50%;transform:translateY(-50%);width:10px;height:10px;border-radius:50%;background:var(--yellow);box-shadow:0 0 8px rgba(255,215,64,.5);left:56%;margin-left:-5px}
-.pieces{font-size:1.5rem;display:flex;gap:.3rem;flex-wrap:wrap;margin:.75rem 0}
+/* ── SERVICES ── */
+#services { background: var(--gray-50); }
+.svc-tabs { display: flex; gap: .5rem; margin-bottom: 2.5rem; flex-wrap: wrap; }
+.svc-tab {
+  font-family: var(--font); font-size: .78rem; font-weight: 600;
+  padding: .5rem 1.1rem; border-radius: 6px; border: 1.5px solid var(--gray-200);
+  background: white; color: var(--gray-500); cursor: pointer;
+  transition: all .2s;
+}
+.svc-tab:hover { border-color: var(--blue-300, #93c5fd); color: var(--blue-600); }
+.svc-tab.active { background: var(--blue-600); border-color: var(--blue-600); color: white; }
 
-/* TRAVELS */
-.travels-intro{font-size:.85rem;color:var(--muted);margin-bottom:2rem;max-width:580px;line-height:1.9}
-.countries-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
-.country-card{background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:1.25rem 1rem;transition:all .25s;position:relative;overflow:hidden}
-.country-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--c,var(--green));transform:scaleX(0);transform-origin:left;transition:transform .3s}
-.country-card:hover::after{transform:scaleX(1)}
-.country-card:hover{border-color:var(--border2);transform:translateY(-3px)}
-.country-flag{font-size:2rem;margin-bottom:.6rem;display:block}
-.country-name{font-size:.85rem;font-weight:600;color:var(--heading);margin-bottom:.2rem}
-.country-region{font-size:.68rem;color:var(--muted);letter-spacing:.06em}
-.country-note{margin-top:.6rem;font-size:.62rem;letter-spacing:.06em;padding:.12rem .45rem;border-radius:2px;display:inline-block}
+.svc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+.svc-card {
+  background: white; border: 1.5px solid var(--gray-200);
+  border-radius: 10px; padding: 1.5rem;
+  display: flex; flex-direction: column; gap: .6rem;
+  transition: all .25s; position: relative; overflow: hidden;
+}
+.svc-card:hover {
+  border-color: var(--blue-300, #93c5fd);
+  box-shadow: 0 8px 30px rgba(37,99,235,.1);
+  transform: translateY(-3px);
+}
+.svc-card-top { display: flex; justify-content: space-between; align-items: flex-start; }
+.svc-icon {
+  width: 44px; height: 44px; border-radius: 10px;
+  background: var(--blue-50); display: flex; align-items: center;
+  justify-content: center; font-size: 1.2rem;
+}
+.svc-price-val { font-size: .88rem; font-weight: 700; color: var(--blue-600); }
+.svc-price-lbl { font-size: .65rem; color: var(--gray-400); text-align: right; }
+.svc-name { font-size: .95rem; font-weight: 700; color: var(--gray-900); }
+.svc-desc { font-size: .8rem; color: var(--gray-500); line-height: 1.7; flex: 1; }
+.svc-tags { display: flex; flex-wrap: wrap; gap: .35rem; margin-top: .2rem; }
+.tag {
+  font-size: .65rem; font-weight: 600; letter-spacing: .05em;
+  padding: .18rem .5rem; border-radius: 4px;
+}
+.tag-py { background: #f0fdf4; color: #16a34a; border: 1px solid #bbf7d0; }
+.tag-html { background: #fff7ed; color: #ea580c; border: 1px solid #fed7aa; }
+.tag-bot { background: #eef2ff; color: #4f46e5; border: 1px solid #c7d2fe; }
+.tag-sec { background: #fef2f2; color: #dc2626; border: 1px solid #fecaca; }
+.tag-auto { background: #f0f9ff; color: #0284c7; border: 1px solid #bae6fd; }
 
-/* PROJECTS */
-#projects{background:var(--bg2)}
-.projects-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
-.proj-card{background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:1.5rem;display:flex;flex-direction:column;gap:.7rem;transition:all .25s;position:relative;overflow:hidden}
-.proj-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,var(--green),var(--cyan));transform:scaleX(0);transform-origin:left;transition:transform .3s}
-.proj-card:hover::before{transform:scaleX(1)}
-.proj-card:hover{border-color:rgba(0,230,118,.15);transform:translateY(-3px);box-shadow:0 10px 30px rgba(0,0,0,.3)}
-.proj-top{display:flex;justify-content:space-between;align-items:flex-start}
-.proj-icon{font-size:1.4rem}
-.proj-gh{font-size:.68rem;color:var(--muted);text-decoration:none;padding:.25rem .55rem;border:1px solid var(--border);border-radius:2px;transition:all .2s}
-.proj-gh:hover{color:var(--green);border-color:rgba(0,230,118,.4)}
-.proj-name{font-size:.92rem;font-weight:600;color:var(--heading)}
-.proj-desc{font-size:.78rem;color:var(--muted);line-height:1.7;flex:1}
-.proj-foot{display:flex;justify-content:space-between;align-items:center}
-.proj-lang{font-size:.65rem;letter-spacing:.08em;padding:.15rem .5rem;border-radius:2px;background:rgba(0,188,212,.08);border:1px solid rgba(0,188,212,.2);color:var(--cyan)}
-.proj-stars{font-size:.68rem;color:var(--muted)}
+/* ── MAINTENANCE SECTION ── */
+.maint-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; margin-top: 1.5rem; }
+.maint-card {
+  background: white; border: 1.5px solid var(--gray-200);
+  border-radius: 12px; padding: 1.75rem 1.5rem;
+  text-align: center; transition: all .25s; position: relative;
+}
+.maint-card.featured {
+  border-color: var(--blue-500); background: var(--blue-600);
+  box-shadow: 0 10px 40px rgba(37,99,235,.25);
+}
+.maint-card.featured .maint-name,
+.maint-card.featured .maint-price,
+.maint-card.featured .maint-feat li { color: white; }
+.maint-card.featured .maint-desc { color: rgba(255,255,255,.7); }
+.maint-card.featured .maint-sep { border-color: rgba(255,255,255,.15); }
+.maint-badge-pop {
+  position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+  background: var(--gray-900); color: white;
+  font-size: .65rem; font-weight: 700; letter-spacing: .08em;
+  text-transform: uppercase; padding: .25rem .75rem; border-radius: 20px;
+}
+.maint-icon { font-size: 1.8rem; margin-bottom: .75rem; display: block; }
+.maint-name { font-size: .8rem; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: var(--gray-600); margin-bottom: .6rem; }
+.maint-price { font-size: 2rem; font-weight: 900; color: var(--gray-900); line-height: 1; }
+.maint-price sup { font-size: 1rem; vertical-align: top; margin-top: .3rem; display: inline-block; }
+.maint-price span { font-size: .75rem; font-weight: 500; color: var(--gray-400); }
+.maint-desc { font-size: .78rem; color: var(--gray-500); margin: .6rem 0; line-height: 1.5; }
+.maint-sep { border: none; border-top: 1px solid var(--gray-200); margin: 1rem 0; }
+.maint-feat { list-style: none; text-align: left; display: flex; flex-direction: column; gap: .45rem; }
+.maint-feat li { font-size: .78rem; color: var(--gray-600); display: flex; align-items: flex-start; gap: .5rem; line-height: 1.4; }
+.maint-feat li::before { content: '✓'; color: var(--blue-500); font-weight: 700; flex-shrink: 0; margin-top: .05rem; }
+.maint-card.featured .maint-feat li::before { color: #93c5fd; }
+.maint-card:not(.featured):hover { border-color: var(--blue-300, #93c5fd); transform: translateY(-3px); box-shadow: 0 8px 24px rgba(37,99,235,.1); }
+
+/* ── PROJECTS ── */
+#projects { background: white; }
+.proj-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+.proj-card {
+  background: var(--gray-50); border: 1.5px solid var(--gray-200);
+  border-radius: 12px; overflow: hidden;
+  display: flex; flex-direction: column;
+  transition: all .25s;
+}
+.proj-card:hover { border-color: var(--blue-300, #93c5fd); box-shadow: 0 10px 32px rgba(37,99,235,.1); transform: translateY(-3px); }
+.proj-preview {
+  height: 200px; background: var(--blue-900);
+  display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
+}
+.proj-preview-inner {
+  width: 85%; height: 75%; background: white; border-radius: 8px 8px 0 0;
+  box-shadow: 0 -4px 20px rgba(0,0,0,.3);
+  display: flex; align-items: center; justify-content: center;
+  position: absolute; bottom: 0;
+  font-size: .75rem; color: var(--gray-400);
+}
+.proj-preview-bar {
+  position: absolute; top: 0; left: 0; right: 0; height: 28px;
+  background: rgba(0,0,0,.25); display: flex; align-items: center;
+  padding: 0 1rem; gap: .4rem;
+}
+.proj-preview-dot { width: 8px; height: 8px; border-radius: 50%; }
+.proj-preview-url {
+  flex: 1; height: 16px; background: rgba(255,255,255,.1);
+  border-radius: 3px; margin-left: .5rem;
+}
+.proj-body { padding: 1.5rem; flex: 1; }
+.proj-type { font-size: .68rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--blue-600); margin-bottom: .4rem; }
+.proj-name { font-size: 1.05rem; font-weight: 700; color: var(--gray-900); margin-bottom: .5rem; }
+.proj-desc { font-size: .83rem; color: var(--gray-500); line-height: 1.7; margin-bottom: 1rem; }
+.proj-link {
+  display: inline-flex; align-items: center; gap: .4rem;
+  font-size: .8rem; font-weight: 600; color: var(--blue-600);
+  text-decoration: none; transition: gap .2s;
+}
+.proj-link:hover { gap: .7rem; }
+.proj-link svg { width: 14px; height: 14px; }
+
+/* ── SKILLS ── */
+#skills { background: var(--gray-50); }
+.skills-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
+.skill-group { }
+.skill-group-title {
+  font-size: .7rem; font-weight: 700; letter-spacing: .15em;
+  text-transform: uppercase; color: var(--gray-400);
+  margin-bottom: 1.5rem; padding-bottom: .75rem;
+  border-bottom: 1px solid var(--gray-200);
+}
+.skill-item { margin-bottom: 1.25rem; }
+.skill-head { display: flex; justify-content: space-between; margin-bottom: .45rem; align-items: center; }
+.skill-lbl { font-size: .875rem; font-weight: 600; color: var(--gray-700); }
+.skill-pct { font-size: .75rem; font-weight: 700; color: var(--blue-600); }
+.skill-track { height: 4px; background: var(--gray-200); border-radius: 2px; overflow: hidden; }
+.skill-fill {
+  height: 100%; border-radius: 2px; width: 0;
+  transition: width 1.2s cubic-bezier(.16,1,.3,1);
+  background: linear-gradient(90deg, var(--blue-700), var(--blue-500));
+}
+.skill-fill.cyber {
+  background: linear-gradient(90deg, #0f766e, #0d9488);
+}
+.skill-fill.on { width: var(--w); }
+
+/* ── ABOUT ── */
+#about { background: white; }
+.about-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 5rem; align-items: start; }
+.about-text p { font-size: .92rem; color: var(--gray-600); margin-bottom: 1rem; line-height: 1.85; }
+.about-text p strong { color: var(--gray-800); font-weight: 600; }
+.info-table { width: 100%; border-collapse: collapse; margin-top: 1.5rem; }
+.info-table tr { border-bottom: 1px solid var(--gray-100); }
+.info-table tr:last-child { border-bottom: none; }
+.info-table td { padding: .75rem 0; font-size: .85rem; }
+.info-table td:first-child { color: var(--gray-400); font-weight: 600; font-size: .75rem; text-transform: uppercase; letter-spacing: .06em; width: 35%; }
+.info-table td:last-child { color: var(--gray-700); font-weight: 500; }
+.info-highlight { display: inline-flex; align-items: center; gap: .4rem; background: var(--blue-50); color: var(--blue-700); padding: .25rem .7rem; border-radius: 4px; font-size: .78rem; font-weight: 600; border: 1px solid var(--blue-100); }
 
 /* ROADMAP */
-.roadmap{display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative}
-.roadmap::before{content:'';position:absolute;top:27px;left:13%;right:13%;height:1px;background:var(--border)}
-.rm-step{padding:0 .75rem}
-.rm-dot{width:54px;height:54px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.1rem;margin-bottom:1.25rem;position:relative;z-index:1}
-.rm-dot.done{background:rgba(0,230,118,.1);border:1px solid var(--green)}
-.rm-dot.active{background:rgba(0,188,212,.1);border:1px solid var(--cyan);box-shadow:0 0 16px rgba(0,188,212,.2)}
-.rm-dot.next{background:var(--surface);border:1px solid var(--border2)}
-.rm-dot.goal{background:rgba(255,82,82,.08);border:1px solid var(--red)}
-.rm-tag{font-size:.62rem;text-transform:uppercase;letter-spacing:.12em;margin-bottom:.3rem}
-.rm-tag.done{color:var(--green)}.rm-tag.active{color:var(--cyan)}.rm-tag.next{color:var(--muted)}.rm-tag.goal{color:var(--red)}
-.rm-name{font-size:.9rem;font-weight:600;color:var(--heading);margin-bottom:.4rem}
-.rm-desc{font-size:.75rem;color:var(--muted);line-height:1.6}
-
-/* LANGUAGES */
-#languages{background:var(--bg2)}
-.lang-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
-.lang-card{background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:1.35rem}
-.lang-flag{font-size:1.8rem;margin-bottom:.6rem;display:block}
-.lang-name{font-size:.9rem;font-weight:600;color:var(--heading)}
-.lang-lvl{font-size:.65rem;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-bottom:.8rem}
-.lang-bar-bg{height:2px;background:var(--border);border-radius:1px;overflow:hidden}
-.lang-bar{height:100%;border-radius:1px;background:linear-gradient(90deg,var(--green),var(--cyan));width:0;transition:width 1.3s cubic-bezier(.16,1,.3,1)}
-.lang-bar.on{width:var(--w)}
-
-/* CONTACT */
-.contact-layout{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
-.contact-body p{font-size:.84rem;color:var(--muted);margin-bottom:.8rem;line-height:1.9}
-.contact-body strong{color:var(--text)}
-.avail-badge{display:inline-flex;align-items:center;gap:.4rem;margin-top:1rem;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;padding:.35rem .85rem;border:1px solid rgba(0,230,118,.3);border-radius:2px;color:var(--green);background:rgba(0,230,118,.05)}
-.avail-dot{width:6px;height:6px;border-radius:50%;background:var(--green);animation:bl 2s infinite}
-.contact-links{display:flex;flex-direction:column;gap:.9rem}
-.clink{display:flex;align-items:center;gap:1rem;padding:1.1rem 1.25rem;background:var(--surface);border:1px solid var(--border);border-radius:4px;text-decoration:none;transition:all .2s}
-.clink:hover{border-color:rgba(0,230,118,.3);transform:translateX(4px)}
-.clink-icon{font-size:1.3rem}
-.clink-body{flex:1}
-.clink-name{font-size:.85rem;font-weight:600;color:var(--heading);display:block}
-.clink-val{font-size:.75rem;color:var(--muted)}
-.clink-arr{color:var(--muted);transition:all .2s}
-.clink:hover .clink-arr{color:var(--green);transform:translateX(4px)}
-
-footer{border-top:1px solid var(--border);padding:1.5rem 2.5rem;display:flex;justify-content:space-between;align-items:center}
-footer p{font-size:.68rem;color:var(--muted);letter-spacing:.06em}
-.fg{color:var(--green)}
-
-@media(max-width:900px){
-  nav{padding:.8rem 1.5rem}.nav-links{display:none}
-  section{padding:3.5rem 1.5rem}#hero{padding:6rem 1.5rem 3rem}
-  .hero-stats{position:static;flex-direction:row;gap:2rem;margin-top:2rem}
-  .about-layout,.skills-layout,.contact-layout{grid-template-columns:1fr}
-  .hobbies-grid{grid-template-columns:1fr 1fr}.elo-widget{grid-column:span 1;grid-template-columns:1fr}
-  .countries-grid{grid-template-columns:repeat(2,1fr)}.projects-grid{grid-template-columns:1fr 1fr}
-  .roadmap{grid-template-columns:1fr 1fr;gap:2rem}.roadmap::before{display:none}
-  .lang-grid{grid-template-columns:1fr 1fr}.svc-teaser-grid{grid-template-columns:1fr 1fr}
-  .svc-cta{flex-direction:column}.svc-cta-btns{flex-direction:row}
-  footer{flex-direction:column;gap:.4rem}
+.roadmap { display: grid; grid-template-columns: repeat(4,1fr); gap: 0; margin-top: 1rem; }
+.roadmap-connector { position: relative; }
+.roadmap-connector::after {
+  content: ''; position: absolute;
+  top: 24px; left: calc(50% + 24px); right: 0;
+  height: 2px; background: var(--gray-200);
+  z-index: 0;
 }
-@media(max-width:600px){
-  .hobbies-grid,.projects-grid,.lang-grid,.countries-grid,.svc-teaser-grid{grid-template-columns:1fr}
-  .elo-widget{grid-column:span 1}.roadmap{grid-template-columns:1fr}
+.roadmap-connector:last-child::after { display: none; }
+.rm-wrap { padding-right: 1.5rem; }
+.rm-circle {
+  width: 48px; height: 48px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: .9rem; position: relative; z-index: 1;
+  margin-bottom: 1.1rem; flex-shrink: 0;
 }
+.rm-circle.done { background: #ecfdf5; border: 2px solid #10b981; }
+.rm-circle.active { background: var(--blue-50); border: 2px solid var(--blue-500); box-shadow: 0 0 0 4px var(--blue-50); }
+.rm-circle.next { background: var(--gray-100); border: 2px solid var(--gray-300); }
+.rm-circle.goal { background: #fef3c7; border: 2px solid #f59e0b; }
+.rm-status { font-size: .62rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; margin-bottom: .3rem; }
+.rm-status.done { color: #10b981; }
+.rm-status.active { color: var(--blue-600); }
+.rm-status.next { color: var(--gray-400); }
+.rm-status.goal { color: #f59e0b; }
+.rm-name { font-size: .9rem; font-weight: 700; color: var(--gray-900); margin-bottom: .3rem; }
+.rm-desc { font-size: .78rem; color: var(--gray-500); line-height: 1.6; }
+
+/* ── CONTACT ── */
+#contact { background: var(--gray-900); }
+.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+.contact-left {}
+.contact-eyebrow { color: #93c5fd; font-size: .7rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; margin-bottom: .6rem; display: flex; align-items: center; gap: .6rem; }
+.contact-eyebrow::before { content: ''; width: 24px; height: 2px; background: #93c5fd; border-radius: 1px; }
+.contact-title { font-size: clamp(1.6rem, 3vw, 2.4rem); font-weight: 800; color: white; letter-spacing: -.03em; line-height: 1.1; margin-bottom: 1rem; }
+.contact-title em { font-style: normal; color: #93c5fd; }
+.contact-desc { font-size: .92rem; color: #94a3b8; line-height: 1.8; margin-bottom: 2rem; }
+.contact-desc strong { color: #e2e8f0; }
+.avail-pill {
+  display: inline-flex; align-items: center; gap: .5rem;
+  background: rgba(74,222,128,.1); border: 1px solid rgba(74,222,128,.2);
+  color: #4ade80; font-size: .75rem; font-weight: 600;
+  padding: .5rem 1.1rem; border-radius: 6px; letter-spacing: .04em;
+}
+.avail-pill::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: #4ade80; animation: pulse-green 2s infinite; }
+.contact-links { display: flex; flex-direction: column; gap: 1rem; }
+.clink {
+  display: flex; align-items: center; gap: 1rem;
+  padding: 1.25rem 1.5rem; background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.08); border-radius: 10px;
+  text-decoration: none; transition: all .2s;
+}
+.clink:hover { background: rgba(255,255,255,.07); border-color: rgba(59,130,246,.4); transform: translateX(4px); }
+.clink-ico { font-size: 1.4rem; width: 44px; text-align: center; flex-shrink: 0; }
+.clink-body { flex: 1; }
+.clink-name { font-size: .9rem; font-weight: 700; color: white; display: block; }
+.clink-val { font-size: .78rem; color: #64748b; }
+.clink-arr { color: #334155; font-size: 1.1rem; transition: all .2s; }
+.clink:hover .clink-arr { color: var(--blue-400, #60a5fa); }
+.clink.discord { border-color: rgba(88,101,242,.3); }
+.clink.discord:hover { border-color: #5865f2; background: rgba(88,101,242,.08); }
+.clink.discord .clink-name { color: #a5b4fc; }
+
+/* ── FOOTER ── */
+footer {
+  border-top: 1px solid var(--gray-800);
+  background: var(--gray-900);
+  padding: 1.75rem 3rem;
+  display: flex; justify-content: space-between; align-items: center;
+}
+footer p { font-size: .78rem; color: var(--gray-600); }
+.f-blue { color: var(--blue-500); font-weight: 600; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 1024px) {
+  #hero { grid-template-columns: 1fr; min-height: auto; }
+  .hero-right { clip-path: none; min-height: auto; padding: 3rem; }
+  .hero-card { margin: 0 auto; }
+  nav { padding: 0 1.5rem; }
+  section { padding: 4rem 1.5rem; }
+  .svc-grid { grid-template-columns: 1fr 1fr; }
+  .maint-grid { grid-template-columns: 1fr 1fr; }
+  .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+}
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .skills-cols { grid-template-columns: 1fr; gap: 2.5rem; }
+  .proj-grid { grid-template-columns: 1fr; }
+  .roadmap { grid-template-columns: 1fr 1fr; gap: 2rem; }
+  .roadmap-connector::after { display: none; }
+  .svc-grid { grid-template-columns: 1fr; }
+  .maint-grid { grid-template-columns: 1fr 1fr; }
+  footer { flex-direction: column; gap: .5rem; text-align: center; }
+}
+@media (max-width: 480px) {
+  .maint-grid { grid-template-columns: 1fr; }
+  .hero-metrics { flex-wrap: wrap; gap: 1.5rem; }
+  .roadmap { grid-template-columns: 1fr; }
+}
+
+/* Fade-in animation */
+@keyframes fadeUp { from { opacity:0; transform: translateY(16px); } to { opacity:1; transform: translateY(0); } }
+.hero-eyebrow { animation: fadeUp .45s .1s both; }
+.hero-title { animation: fadeUp .45s .2s both; }
+.hero-sub { animation: fadeUp .45s .3s both; }
+.hero-btns { animation: fadeUp .45s .4s both; }
+.hero-metrics { animation: fadeUp .45s .5s both; }
+.hero-card { animation: fadeUp .5s .35s both; }
 </style>
 </head>
 <body>
 
-<nav>
-  <div class="nav-logo">juto<span>@222 ~</span></div>
+<nav id="navbar">
+  <a href="#" class="nav-logo">Julien<span>.</span></a>
   <ul class="nav-links">
-    <li><a href="#about">profil</a></li>
-    <li><a href="#skills">skills</a></li>
-    <li><a href="#hobbies">passions</a></li>
-    <li><a href="#travels">voyages</a></li>
-    <li><a href="#projects">projets</a></li>
-    <li><a href="#ambition">objectif</a></li>
-    <li><a href="services.html" class="services-link">💼 services</a></li>
-    <li><a href="#contact">contact</a></li>
+    <li><a href="#about">À propos</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#projects">Projets</a></li>
+    <li><a href="#skills">Compétences</a></li>
+    <li><a href="#contact">Contact</a></li>
   </ul>
-  <div class="nav-dot">disponible</div>
+  <div style="display:flex;align-items:center;gap:1rem;">
+    <div class="nav-avail">Disponible</div>
+    <a href="#contact" class="nav-cta">Me contacter →</a>
+  </div>
 </nav>
 
-<!-- HERO -->
+<!-- ═══ HERO ═══ -->
 <section id="hero">
-  <div class="hero-bg-grid"></div>
-  <div class="hero-glow"></div>
-  <div class="hero-inner">
-    <div class="prompt-line">
-      <span class="pu">juto</span><span style="color:var(--muted)">@</span><span class="ph">ecorp</span><span style="color:var(--muted)">:</span><span class="pp">~/portfolio</span><span style="color:var(--muted)">$</span><span>cat whoami.txt</span>
-    </div>
-    <h1 class="hero-title">DEV<br><span class="g">JUTO</span><span class="m">222</span></h1>
-    <p class="hero-tagline">
-      <span class="hl">Développeur Python & HTML</span> passionné de <span class="hl2">cybersécurité</span>.<br>
-      17 ans, Terminale Pro CIEL — je construis des outils, j'apprends en permanence<br>
-      et je vise le monde du <span class="hl">pentesting offensif</span>.
+  <div class="hero-left">
+    <div class="hero-eyebrow">Développeur Freelance</div>
+    <h1 class="hero-title">
+      Je crée des solutions<br><span class="accent">sur mesure</span><br>pour vos projets.
+    </h1>
+    <p class="hero-sub">
+      Scripts Python, sites web, bots Discord et outils d'automatisation.
+      <strong>Tarifs accessibles, résultats professionnels.</strong>
+      Disponible dès maintenant.
     </p>
-    <div class="terminal-block">
-      <div class="t-line"><span class="t-prompt">$</span><span>./juto --info</span></div>
-      <div class="t-line"><span class="t-key">age</span><span class="t-val">17</span></div>
-      <div class="t-line"><span class="t-key">formation</span><span class="t-val">Terminale Pro CIEL</span></div>
-      <div class="t-line"><span class="t-key">stack</span><span class="t-val">Python · HTML · Git</span></div>
-      <div class="t-line"><span class="t-key">target</span><span class="t-val">Pentester offensif</span></div>
-      <div class="t-line"><span class="t-key">chess_elo</span><span class="t-y">1400 ELO MAX ♟</span></div>
-      <div class="t-line"><span class="t-key">countries</span><span class="t-val">8 pays visités 🌍</span></div>
-      <div class="t-line"><span class="t-key">services</span><span class="t-y">disponible · tarifs négociables 💼</span></div>
-      <div class="t-line"><span class="t-key">status</span><span class="t-ok">DISPONIBLE ✓</span></div>
-      <div class="t-line"><span class="t-prompt">$</span><span class="t-cursor"></span></div>
-    </div>
     <div class="hero-btns">
-      <a href="#projects" class="btn btn-g">→ voir mes projets</a>
-      <a href="services.html" class="btn btn-y">💼 mes services & tarifs</a>
-      <a href="https://github.com/juto222" target="_blank" class="btn btn-ghost">↗ github</a>
+      <a href="#services" class="btn btn-primary">Voir les services →</a>
+      <a href="#contact" class="btn btn-discord">💬 Discord : user30222</a>
+      <a href="https://github.com/juto222" target="_blank" class="btn btn-outline">GitHub ↗</a>
     </div>
-    <div class="hero-stats">
-      <div><span class="stat-num">17</span><span class="stat-lbl">Ans</span></div>
-      <div><span class="stat-num">06</span><span class="stat-lbl">Repos GitHub</span></div>
-      <div><span class="stat-num">08</span><span class="stat-lbl">Pays visités</span></div>
-      <div><span class="stat-num">∞</span><span class="stat-lbl">Motivation</span></div>
-    </div>
-  </div>
-</section>
-
-<!-- SERVICES TEASER -->
-<section id="services-teaser">
-  <div class="max-w">
-    <p class="sec-tag">00 — services</p>
-    <h2 class="sec-title">Je code aussi <em>pour toi</em></h2>
-    <div class="svc-teaser-grid">
-      <div class="svc-mini" style="--c:var(--green)">
-        <div class="svc-mini-header"><span class="svc-mini-icon">🤖</span><span class="svc-mini-price">dès 5€</span></div>
-        <div class="svc-mini-name">Scripts Python & Automatisation</div>
-        <div class="svc-mini-desc">Scraper, organisateur de fichiers, envoi d'emails auto, planificateur de tâches, générateur de rapports...</div>
-      </div>
-      <div class="svc-mini" style="--c:var(--orange)">
-        <div class="svc-mini-header"><span class="svc-mini-icon">🌐</span><span class="svc-mini-price">dès 8€</span></div>
-        <div class="svc-mini-name">Sites Web HTML/CSS</div>
-        <div class="svc-mini-desc">Portfolio, landing page, site vitrine, CV web, page de lien, page de serveur Discord, refonte graphique...</div>
-      </div>
-      <div class="svc-mini" style="--c:#5865f2">
-        <div class="svc-mini-header"><span class="svc-mini-icon">🤖</span><span class="svc-mini-price">dès 8€</span></div>
-        <div class="svc-mini-name">Bots Discord personnalisés</div>
-        <div class="svc-mini-desc">Modération, système XP, économie virtuelle, tickets, rôles automatiques, annonces, entertainment...</div>
-      </div>
-      <div class="svc-mini" style="--c:var(--yellow)">
-        <div class="svc-mini-header"><span class="svc-mini-icon">🔧</span><span class="svc-mini-price">dès 5€</span></div>
-        <div class="svc-mini-name">Outils Python utilitaires</div>
-        <div class="svc-mini-desc">Gestionnaire de mots de passe, convertisseur de fichiers, mini-jeux terminal, traitement d'images en batch...</div>
-      </div>
-      <div class="svc-mini" style="--c:var(--purple)">
-        <div class="svc-mini-header"><span class="svc-mini-icon">🔎</span><span class="svc-mini-price">dès 5€</span></div>
-        <div class="svc-mini-name">Outils réseau & OSINT éducatif</div>
-        <div class="svc-mini-desc">Scanner réseau, outil OSINT basique, ping automatique, outils pédagogiques de cybersécurité. Usage légal uniquement.</div>
-      </div>
-      <div class="svc-mini" style="--c:var(--green)">
-        <div class="svc-mini-header"><span class="svc-mini-icon">✨</span><span class="svc-mini-price">prix libre</span></div>
-        <div class="svc-mini-name">Prestation sur mesure</div>
-        <div class="svc-mini-desc">Un projet qui sort de l'ordinaire ? Décris ton idée sur Discord, je te dis si c'est faisable et on trouve un prix ensemble.</div>
-      </div>
-    </div>
-    <div class="svc-cta">
-      <div class="svc-cta-left">
-        <div class="svc-cta-title">30+ prestations disponibles · Tarifs négociables · Contact via Discord</div>
-        <div class="svc-cta-sub">Tous les prix sont <strong>indicatifs et négociables</strong>. Dis-moi ce dont tu as besoin sur <strong>Discord : user30222</strong> — on discute, on s'accorde, je livre.</div>
-      </div>
-      <div class="svc-cta-btns">
-        <a href="services.html" class="btn btn-y">💼 voir tous les services</a>
-        <a href="#contact" class="btn btn-ghost">→ me contacter</a>
-      </div>
+    <div class="hero-metrics">
+      <div><span class="metric-num">17</span><span class="metric-lbl">Ans</span></div>
+      <div><span class="metric-num">06</span><span class="metric-lbl">Projets GitHub</span></div>
+      <div><span class="metric-num">30+</span><span class="metric-lbl">Prestations</span></div>
+      <div><span class="metric-num">∞</span><span class="metric-lbl">Motivation</span></div>
     </div>
   </div>
-</section>
-
-<!-- ABOUT -->
-<section id="about">
-  <div class="max-w">
-    <p class="sec-tag">01 — profil</p>
-    <h2 class="sec-title">Qui est <em>juto</em> ?</h2>
-    <div class="about-layout">
-      <div class="about-text">
-        <p>Salut, moi c'est <strong>juto</strong> — 17 ans, actuellement en <strong>Terminale Professionnelle CIEL</strong> (Cybersécurité, Informatique et réseaux, Électronique).</p>
-        <p>Je code en <strong>Python</strong> et en <strong>HTML</strong>. J'aime construire des choses concrètes : outils de sécurité, programmes pratiques, expériences web. Chaque projet m'apprend quelque chose.</p>
-        <p>Ce qui me motive le plus ? La <strong>cybersécurité offensive</strong>. Mon objectif : devenir pentester — tester des systèmes, trouver des failles avant les hackers malveillants.</p>
-        <p>En dehors du code : la <strong>boxe</strong>, le <strong>foot</strong>, les <strong>échecs</strong> (1400 ELO max), et les <strong>voyages</strong> à travers le monde.</p>
-      </div>
-      <table class="info-table">
-        <tr><td>Âge</td><td>17 ans</td></tr>
-        <tr><td>Formation</td><td>Terminale Pro CIEL</td></tr>
-        <tr><td>Spécialité</td><td><span class="tag-g">Cybersécurité & Réseaux</span></td></tr>
-        <tr><td>Objectif</td><td>Devenir Pentester</td></tr>
-        <tr><td>Chess ELO</td><td style="color:var(--yellow)">1400 ELO max ♟</td></tr>
-        <tr><td>Pays visités</td><td>8 pays 🌍</td></tr>
-        <tr><td>Discord</td><td>user30222</td></tr>
-        <tr><td>GitHub</td><td>juto222</td></tr>
-      </table>
-    </div>
-  </div>
-</section>
-
-<!-- SKILLS -->
-<section id="skills" style="background:var(--bg2)">
-  <div class="max-w">
-    <p class="sec-tag">02 — compétences</p>
-    <h2 class="sec-title">Mon <em>stack</em> technique</h2>
-    <div class="skills-layout">
-      <div>
-        <div class="skill-group-hd">Langages & Dev</div>
-        <div class="skill-row"><div class="skill-head"><span class="skill-name">🐍 Python</span><span class="skill-pct">70%</span></div><div class="bar-bg"><div class="bar-fill dev" style="--w:70%"></div></div></div>
-        <div class="skill-row"><div class="skill-head"><span class="skill-name">🔧 Git & GitHub</span><span class="skill-pct">75%</span></div><div class="bar-bg"><div class="bar-fill dev" style="--w:75%"></div></div></div>
-        <div class="skill-row"><div class="skill-head"><span class="skill-name">🌐 HTML</span><span class="skill-pct">60%</span></div><div class="bar-bg"><div class="bar-fill dev" style="--w:60%"></div></div></div>
-        <div class="skill-row"><div class="skill-head"><span class="skill-name">🎨 CSS</span><span class="skill-pct">45%</span></div><div class="bar-bg"><div class="bar-fill dev" style="--w:45%"></div></div></div>
-      </div>
-      <div>
-        <div class="skill-group-hd">Cybersécurité & Réseau (CIEL)</div>
-        <div class="skill-row"><div class="skill-head"><span class="skill-name">🔐 Sécurité informatique</span><span class="skill-pct">55%</span></div><div class="bar-bg"><div class="bar-fill sec" style="--w:55%"></div></div></div>
-        <div class="skill-row"><div class="skill-head"><span class="skill-name">🌐 Réseaux TCP/IP</span><span class="skill-pct">50%</span></div><div class="bar-bg"><div class="bar-fill sec" style="--w:50%"></div></div></div>
-        <div class="skill-row"><div class="skill-head"><span class="skill-name">🐧 Linux / Kali</span><span class="skill-pct">40%</span></div><div class="bar-bg"><div class="bar-fill sec" style="--w:40%"></div></div></div>
-        <div class="skill-row"><div class="skill-head"><span class="skill-name">🛠️ Nmap / Wireshark</span><span class="skill-pct">30%</span></div><div class="bar-bg"><div class="bar-fill sec" style="--w:30%"></div></div></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- PASSIONS -->
-<section id="hobbies">
-  <div class="max-w">
-    <p class="sec-tag">03 — passions</p>
-    <h2 class="sec-title">Ce qui me <em>fait vivre</em></h2>
-    <div class="hobbies-grid">
-      <div class="hobby-card" data-num="01"><span class="hobby-icon">🥊</span><div class="hobby-name">Boxe</div><div class="hobby-desc">Discipline, rigueur, mental d'acier. La boxe m'apprend à persévérer — que ce soit sur le ring ou devant un écran qui refuse de compiler.</div><span class="hobby-badge g">discipline</span></div>
-      <div class="hobby-card" data-num="02"><span class="hobby-icon">⚽</span><div class="hobby-name">Football</div><div class="hobby-desc">La passion du jeu collectif. Avoir une stratégie, s'adapter, jouer en équipe — pas si différent du développement en vrai.</div><span class="hobby-badge">collectif</span></div>
-      <div class="hobby-card" data-num="03"><span class="hobby-icon">👥</span><div class="hobby-name">Amis</div><div class="hobby-desc">Sortir, décompresser, rigoler. Les bons moments avec les proches sont indispensables pour rester motivé et garder la tête froide.</div><span class="hobby-badge">social</span></div>
-      <div class="elo-widget">
+  <div class="hero-right">
+    <div class="hero-right-bg"></div>
+    <div class="hero-right-pattern"></div>
+    <div class="hero-card">
+      <div class="hc-header">
+        <div class="hc-avatar">J</div>
         <div>
-          <div class="elo-label">Niveau atteint — Chess.com</div>
-          <div class="elo-num">1400</div>
-          <div class="elo-sub">ELO maximum • Intermédiaire-avancé</div>
-          <div class="elo-bar-labels"><span>Débutant 400</span><span style="color:var(--yellow)">↑ 1400</span><span>Grand Maître 2500+</span></div>
-          <div class="elo-track"><div class="elo-fill"></div><div class="elo-marker"></div></div>
-        </div>
-        <div>
-          <div class="hobby-name">♟ Échecs</div><br>
-          <div class="hobby-desc">La stratégie à l'état pur. Anticiper plusieurs coups d'avance, lire l'adversaire, tenir sous pression — des réflexes qui s'appliquent aussi bien à un audit de sécurité qu'à une partie de blitz.</div>
-          <div class="pieces">♔ ♕ ♗ ♘ ♖ ♙</div>
-          <span class="hobby-badge y">stratégie · 1400 elo max</span>
+          <div class="hc-name">Julien</div>
+          <div class="hc-role">Développeur Freelance · juto222</div>
         </div>
       </div>
+      <div class="hc-row"><span class="hc-key">Formation</span><span class="hc-val blue">Terminale Pro CIEL</span></div>
+      <div class="hc-row"><span class="hc-key">Stack</span><span class="hc-val">Python · HTML · Git</span></div>
+      <div class="hc-row"><span class="hc-key">Objectif</span><span class="hc-val yellow">Pentester offensif</span></div>
+      <div class="hc-row"><span class="hc-key">Chess ELO</span><span class="hc-val yellow">1 400 ♟</span></div>
+      <div class="hc-row"><span class="hc-key">Pays visités</span><span class="hc-val">8 pays 🌍</span></div>
+      <div class="hc-row"><span class="hc-key">Tarifs</span><span class="hc-val green">Négociables</span></div>
+      <div class="hc-row"><span class="hc-key">Statut</span><span class="hc-badge green">● DISPONIBLE</span></div>
     </div>
   </div>
 </section>
 
-<!-- TRAVELS -->
-<section id="travels" style="background:var(--bg2)">
+<!-- ═══ SERVICES ═══ -->
+<section id="services">
   <div class="max-w">
-    <p class="sec-tag">04 — voyages</p>
-    <h2 class="sec-title">8 pays, <em>∞ souvenirs</em></h2>
-    <p class="travels-intro">Voyager c'est compiler du monde réel. Chaque pays est un nouveau système à explorer — ses cultures, ses langues, ses gens.</p>
-    <div class="countries-grid">
-      <div class="country-card" style="--c:#00c853"><span class="country-flag">🇨🇷</span><div class="country-name">Costa Rica</div><div class="country-region">Amérique Centrale</div><span class="country-note" style="background:rgba(0,200,83,.08);border:1px solid rgba(0,200,83,.2);color:#00c853">Pura vida 🌿</span></div>
-      <div class="country-card" style="--c:var(--blue)"><span class="country-flag">🇬🇵</span><div class="country-name">Guadeloupe</div><div class="country-region">Caraïbes · DOM</div><span class="country-note" style="background:rgba(79,195,247,.08);border:1px solid rgba(79,195,247,.2);color:var(--blue)">Île paradisiaque 🌊</span></div>
-      <div class="country-card" style="--c:var(--red)"><span class="country-flag">🇪🇸</span><div class="country-name">Espagne</div><div class="country-region">Europe du Sud</div><span class="country-note" style="background:rgba(255,82,82,.08);border:1px solid rgba(255,82,82,.2);color:var(--red)">Fiesta ☀️</span></div>
-      <div class="country-card" style="--c:var(--green2)"><span class="country-flag">🇮🇹</span><div class="country-name">Italie</div><div class="country-region">Europe du Sud</div><span class="country-note" style="background:rgba(105,255,157,.08);border:1px solid rgba(105,255,157,.2);color:var(--green2)">Dolce vita 🍕</span></div>
-      <div class="country-card" style="--c:var(--blue)"><span class="country-flag">🇭🇷</span><div class="country-name">Croatie</div><div class="country-region">Balkans · Adriatique</div><span class="country-note" style="background:rgba(79,195,247,.08);border:1px solid rgba(79,195,247,.2);color:var(--blue)">Côte imprenable 🏖️</span></div>
-      <div class="country-card" style="--c:var(--yellow)"><span class="country-flag">🇲🇪</span><div class="country-name">Monténégro</div><div class="country-region">Balkans</div><span class="country-note" style="background:rgba(255,215,64,.08);border:1px solid rgba(255,215,64,.2);color:var(--yellow)">Paysages raw 🏔️</span></div>
-      <div class="country-card" style="--c:var(--purple)"><span class="country-flag">🇸🇰</span><div class="country-name">Slovaquie</div><div class="country-region">Europe Centrale</div><span class="country-note" style="background:rgba(206,147,216,.08);border:1px solid rgba(206,147,216,.2);color:var(--purple)">Châteaux & forêts 🏰</span></div>
-      <div class="country-card" style="--c:var(--cyan)"><span class="country-flag">🇧🇦</span><div class="country-name">Bosnie</div><div class="country-region">Balkans</div><span class="country-note" style="background:rgba(0,188,212,.08);border:1px solid rgba(0,188,212,.2);color:var(--cyan)">Histoire profonde 🕌</span></div>
+    <div class="sec-eyebrow">Services</div>
+    <h2 class="sec-title">Ce que je peux faire <em>pour vous</em></h2>
+    <p class="sec-desc">Des prestations adaptées à chaque besoin, à des tarifs <strong>accessibles et négociables</strong>. Tout se passe sur Discord : <strong>user30222</strong>.</p>
+
+    <!-- Category : Web -->
+    <div class="svc-tabs">
+      <button class="svc-tab active" onclick="filterSvc('web')">🌐 Sites Web</button>
+      <button class="svc-tab" onclick="filterSvc('python')">🐍 Scripts Python</button>
+      <button class="svc-tab" onclick="filterSvc('discord')">🤖 Bots Discord</button>
+      <button class="svc-tab" onclick="filterSvc('outils')">🔧 Outils Utilitaires</button>
+      <button class="svc-tab" onclick="filterSvc('all')">Tout afficher</button>
+    </div>
+
+    <div class="svc-grid" id="svc-grid">
+
+      <!-- WEB -->
+      <div class="svc-card" data-cat="web">
+        <div class="svc-card-top">
+          <div class="svc-icon">🖼️</div>
+          <div><div class="svc-price-val">8€ – 40€</div><div class="svc-price-lbl">négociable</div></div>
+        </div>
+        <div class="svc-name">Site vitrine / présentation</div>
+        <div class="svc-desc">Site statique responsive pour présenter votre activité, projet ou association. Design propre et compatible mobile.</div>
+        <div class="svc-tags"><span class="tag tag-html">HTML</span><span class="tag tag-auto">CSS</span></div>
+      </div>
+
+      <div class="svc-card" data-cat="web">
+        <div class="svc-card-top">
+          <div class="svc-icon">🎨</div>
+          <div><div class="svc-price-val">12€ – 55€</div><div class="svc-price-lbl">négociable</div></div>
+        </div>
+        <div class="svc-name">Portfolio web personnalisé</div>
+        <div class="svc-desc">Portfolio HTML/CSS animé entièrement sur mesure. Style au choix : professionnel, dark, coloré — selon votre image.</div>
+        <div class="svc-tags"><span class="tag tag-html">HTML</span><span class="tag tag-auto">CSS</span></div>
+      </div>
+
+      <div class="svc-card" data-cat="web">
+        <div class="svc-card-top">
+          <div class="svc-icon">📄</div>
+          <div><div class="svc-price-val">6€ – 25€</div><div class="svc-price-lbl">négociable</div></div>
+        </div>
+        <div class="svc-name">Landing page one-page</div>
+        <div class="svc-desc">Page unique optimisée pour présenter un projet ou un produit. Scroll fluide, call-to-action clair.</div>
+        <div class="svc-tags"><span class="tag tag-html">HTML</span><span class="tag tag-auto">CSS</span></div>
+      </div>
+
+      <div class="svc-card" data-cat="web">
+        <div class="svc-card-top">
+          <div class="svc-icon">📋</div>
+          <div><div class="svc-price-val">6€ – 22€</div><div class="svc-price-lbl">négociable</div></div>
+        </div>
+        <div class="svc-name">CV web interactif</div>
+        <div class="svc-desc">Votre CV sous forme de page web interactive, plus mémorable qu'un PDF. Exportable et partageable par lien.</div>
+        <div class="svc-tags"><span class="tag tag-html">HTML</span><span class="tag tag-auto">CSS</span></div>
+      </div>
+
+      <div class="svc-card" data-cat="web">
+        <div class="svc-card-top">
+          <div class="svc-icon">🔗</div>
+          <div><div class="svc-price-val">5€ – 18€</div><div class="svc-price-lbl">négociable</div></div>
+        </div>
+        <div class="svc-name">Page de lien (link-in-bio)</div>
+        <div class="svc-desc">Page minimaliste regroupant tous vos liens. Alternative stylée à Linktree, 100% personnalisable.</div>
+        <div class="svc-tags"><span class="tag tag-html">HTML</span><span class="tag tag-auto">CSS</span></div>
+      </div>
+
+      <div class="svc-card" data-cat="web">
+        <div class="svc-card-top">
+          <div class="svc-icon">🌙</div>
+          <div><div class="svc-price-val">4€ – 15€</div><div class="svc-price-lbl">négociable</div></div>
+        </div>
+        <div class="svc-name">Refonte graphique d'un site existant</div>
+        <div class="svc-desc">Votre site semble dépassé ? Je le restyle entièrement : même contenu, meilleur design, responsive.</div>
+        <div class="svc-tags"><span class="tag tag-html">HTML</span><span class="tag tag-auto">CSS</span></div>
+      </div>
+
+      <!-- PYTHON -->
+      <div class="svc-card" data-cat="python" style="display:none">
+        <div class="svc-card-top">
+          <div class="svc-icon">🤖</div>
+          <div><div class="svc-price-val">4€ – 20€</div><div class="svc-price-lbl">négociable</div></div>
+        </div>
+        <div class="svc-name">Script d'automatisation générique</div>
+        <div class="svc-desc">Automatise n'importe quelle tâche répétitive : renommage, copie, traitement de données, remplissage de formulaires.</div>
+        <div class="svc-tags"><span class="tag tag-py">Python</span><span class="tag tag-auto">Automatisation</span></div>
+      </div>
+
+      <div class="svc-card" data-cat="python" style="display:none">
+        <div class="svc-card-top">
+          <div class="svc-icon">🕷️</div>
+          <div><div class="svc-price-val">4€ – 20€</div><div class="svc-price-lbl">négociable</div></div>
+        </div>
+        <div class="svc-name">Scraper de données web</div>
+        <div class="svc-desc">Récupération automatique de données depuis des sites web. Export CSV, JSON ou TXT.</div>
+        <div class="svc-tags"><span class="tag tag-py">Python</span><span class="tag tag-auto">BeautifulSoup</span></div>
+      </div>
+
+      <div class="svc-card" data-cat="python" style="display:none">
+        <div class="svc-card-top">
+          <div class="svc-icon">📬</div>
+          <div><div class="svc-price-val">4€ – 16€</div><div class="svc-price-lbl">négociable</div></div>
+        </div>
+        <div class="svc-name">Envoi automatique d'emails</div>
+        <div class="svc-desc">Envois d'emails ou de notifications Discord automatisés : rappels, alertes, rapports planifiés.</div>
+        <div class="svc-tags"><span class="tag tag-py">Python</span><span class="tag tag-auto">SMTP</span></div>
+      </div>
+
+      <div class="svc-card" data-cat="python" style="display:none">
+        <div class="svc-card-top">
+          <div class="svc-icon">📁</div>
+          <div><div class="svc-price-val">4€ – 15€</div><div class="svc-price-lbl">négociable</div></div>
+        </div>
+        <div class="svc-name">Organisateur de fichiers automatique</div>
+        <div class="svc-desc">Trie, déplace et classe vos fichiers selon des règles personnalisées : type, date, nom, taille.</div>
+        <div class="svc-tags"><span class="tag tag-py">Python</span><span class="tag tag-auto">Automatisation</span></div>
+      </div>
+
+      <div class="svc-card" data-cat="python" style="display:none">
+        <div class="svc-card-top">
+          <div class="svc-icon">📈</div>
+          <div><div class="svc-price-val">4€ – 16€</div><div class="svc-price-lbl">négociable</div></div>
+        </div>
+        <div class="svc-name">Suivi de prix & alertes</div>
+        <div class="svc-desc">Surveille le prix d'un produit et envoie une alerte Discord ou email dès qu'une baisse est détectée.</div>
+        <div class="svc-tags"><span class="tag tag-py">Python</span><span class="tag tag-auto">Scraping</span></div>
+      </div>
+
+      <div class="svc-card" data-cat="python" style="display:none">
+        <div class="svc-card-top">
+          <div class="svc-icon">💾</div>
+          <div><div class="svc-price-val">4€ – 16€</div><div class="svc-price-lbl">négociable</div></div>
+        </div>
+        <div class="svc-name">Script de backup automatique</div>
+        <div class="svc-desc">Sauvegarde automatique de vos fichiers importants vers un dossier ou une archive ZIP horodatée.</div>
+        <div class="svc-tags"><span class="tag tag-py">Python</span><span class="tag tag-auto">Schedule</span></div>
+      </div>
+
+      <!-- DISCORD -->
+      <div class="svc-card" data-cat="discord" style="display:none">
+        <div class="svc-card-top">
+          <div class="svc-icon">🛡️</div>
+          <div><div class="svc-price-val">8€ – 28€</div><div class="svc-price-lbl">négociable</div></div>
+        </div>
+        <div class="svc-name">Bot modération automatique</div>
+        <div class="svc-desc">Anti-spam, filtrage de mots, mute/ban auto, système de warns, logs des sanctions. Votre serveur géré automatiquement.</div>
+        <div class="svc-tags"><span class="tag tag-py">Python</span><span class="tag tag-bot">Discord.py</span></div>
+      </div>
+
+      <div class="svc-card" data-cat="discord" style="display:none">
+        <div class="svc-card-top">
+          <div class="svc-icon">⭐</div>
+          <div><div class="svc-price-val">10€ – 32€</div><div class="svc-price-lbl">négociable</div></div>
+        </div>
+        <div class="svc-name">Bot système XP / niveaux</div>
+        <div class="svc-desc">Expérience, niveaux progressifs, leaderboard, récompenses automatiques. Engagez votre communauté.</div>
+        <div class="svc-tags"><span class="tag tag-py">Python</span><span class="tag tag-bot">Discord.py</span><span class="tag tag-auto">SQLite</span></div>
+      </div>
+
+      <div class="svc-card" data-cat="discord" style="display:none">
+        <div class="svc-card-top">
+          <div class="svc-icon">🎫</div>
+          <div><div class="svc-price-val">8€ – 25€</div><div class="svc-price-lbl">négociable</div></div>
+        </div>
+        <div class="svc-name">Bot système de tickets support</div>
+        <div class="svc-desc">Tickets privés, assignation staff, transcription automatique à la fermeture. Pour les serveurs communautaires.</div>
+        <div class="svc-tags"><span class="tag tag-py">Python</span><span class="tag tag-bot">Discord.py</span></div>
+      </div>
+
+      <div class="svc-card" data-cat="discord" style="display:none">
+        <div class="svc-card-top">
+          <div class="svc-icon">💰</div>
+          <div><div class="svc-price-val">12€ – 35€</div><div class="svc-price-lbl">négociable</div></div>
+        </div>
+        <div class="svc-name">Bot économie virtuelle</div>
+        <div class="svc-desc">Monnaie virtuelle, shop d'items, gains en tchatant, système de transferts. Une économie pour votre serveur.</div>
+        <div class="svc-tags"><span class="tag tag-py">Python</span><span class="tag tag-bot">Discord.py</span><span class="tag tag-auto">SQLite</span></div>
+      </div>
+
+      <div class="svc-card" data-cat="discord" style="display:none">
+        <div class="svc-card-top">
+          <div class="svc-icon">🎭</div>
+          <div><div class="svc-price-val">8€ – 24€</div><div class="svc-price-lbl">négociable</div></div>
+        </div>
+        <div class="svc-name">Bot rôles automatiques</div>
+        <div class="svc-desc">Attribution de rôles au clic, rôles à l'arrivée, système de vérification. Simple et efficace.</div>
+        <div class="svc-tags"><span class="tag tag-py">Python</span><span class="tag tag-bot">Discord.py</span></div>
+      </div>
+
+      <!-- OUTILS -->
+      <div class="svc-card" data-cat="outils" style="display:none">
+        <div class="svc-card-top">
+          <div class="svc-icon">🔐</div>
+          <div><div class="svc-price-val">4€ – 20€</div><div class="svc-price-lbl">négociable</div></div>
+        </div>
+        <div class="svc-name">Gestionnaire de mots de passe</div>
+        <div class="svc-desc">Stockez et consultez vos mots de passe en local. Chiffrement inclus, zéro cloud, fonctionne hors ligne.</div>
+        <div class="svc-tags"><span class="tag tag-py">Python</span><span class="tag tag-sec">Cryptography</span></div>
+      </div>
+
+      <div class="svc-card" data-cat="outils" style="display:none">
+        <div class="svc-card-top">
+          <div class="svc-icon">🖼️</div>
+          <div><div class="svc-price-val">4€ – 16€</div><div class="svc-price-lbl">négociable</div></div>
+        </div>
+        <div class="svc-name">Traitement d'images en batch</div>
+        <div class="svc-desc">Redimensionner, convertir, compresser, watermarquer des centaines d'images automatiquement.</div>
+        <div class="svc-tags"><span class="tag tag-py">Python</span><span class="tag tag-auto">Pillow</span></div>
+      </div>
+
+      <div class="svc-card" data-cat="outils" style="display:none">
+        <div class="svc-card-top">
+          <div class="svc-icon">🔍</div>
+          <div><div class="svc-price-val">4€ – 16€</div><div class="svc-price-lbl">négociable</div></div>
+        </div>
+        <div class="svc-name">Outil OSINT basique</div>
+        <div class="svc-desc">Recherche d'un pseudo sur plusieurs plateformes simultanément. Usage légal et pédagogique uniquement.</div>
+        <div class="svc-tags"><span class="tag tag-py">Python</span><span class="tag tag-sec">OSINT</span></div>
+      </div>
+
+    </div><!-- /svc-grid -->
+
+    <!-- ── CONCEPTION DE SITE WEB ── -->
+    <div style="margin-top:3.5rem; padding: 2.5rem; background: white; border: 1.5px solid var(--gray-200); border-radius: 14px;">
+      <div style="display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:start;margin-bottom:2rem;">
+        <div>
+          <div style="font-size:.7rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--blue-600);margin-bottom:.5rem;">🌐 Conception complète de site web</div>
+          <div style="font-size:1.25rem;font-weight:800;color:var(--gray-900);letter-spacing:-.02em;margin-bottom:.6rem;">De la conception à la mise en ligne</div>
+          <p style="font-size:.88rem;color:var(--gray-500);line-height:1.8;max-width:580px;">Site vitrine, portfolio, landing page ou page de serveur Discord — je m'occupe de tout : design, développement, intégration du contenu. Livraison en fichiers HTML/CSS prêts à déployer.</p>
+        </div>
+        <div style="text-align:right;flex-shrink:0;">
+          <div style="font-size:2rem;font-weight:900;color:var(--blue-600);">8€</div>
+          <div style="font-size:.75rem;color:var(--gray-400);">à partir de</div>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:2rem;">
+        <div style="background:var(--gray-50);border-radius:8px;padding:1rem;">
+          <div style="font-size:.78rem;font-weight:700;color:var(--gray-700);margin-bottom:.3rem;">✏️ Design sur mesure</div>
+          <div style="font-size:.75rem;color:var(--gray-500);">Style personnalisé selon votre image. Choix libre : pro, dark, coloré...</div>
+        </div>
+        <div style="background:var(--gray-50);border-radius:8px;padding:1rem;">
+          <div style="font-size:.78rem;font-weight:700;color:var(--gray-700);margin-bottom:.3rem;">📱 Responsive mobile</div>
+          <div style="font-size:.75rem;color:var(--gray-500);">Adapté à tous les écrans : desktop, tablette, smartphone.</div>
+        </div>
+        <div style="background:var(--gray-50);border-radius:8px;padding:1rem;">
+          <div style="font-size:.78rem;font-weight:700;color:var(--gray-700);margin-bottom:.3rem;">🚀 Livraison rapide</div>
+          <div style="font-size:.75rem;color:var(--gray-500);">Délai selon la complexité, convenu avant de commencer.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── MAINTENANCE ── -->
+    <div style="margin-top:3.5rem;">
+      <div class="sec-eyebrow" style="margin-bottom:.6rem;">Maintenance mensuelle</div>
+      <h3 style="font-size:1.6rem;font-weight:800;color:var(--gray-900);letter-spacing:-.02em;margin-bottom:.6rem;">Votre site, <em style="font-style:normal;color:var(--blue-600)">toujours à jour</em></h3>
+      <p style="font-size:.9rem;color:var(--gray-500);margin-bottom:2.5rem;line-height:1.7;">Un abonnement mensuel pour garder votre site en ordre. Choisissez la formule adaptée à vos besoins.</p>
+      <div class="maint-grid">
+
+        <div class="maint-card">
+          <span class="maint-icon">🔧</span>
+          <div class="maint-name">Basique</div>
+          <div class="maint-price"><sup>€</sup>3<span>/mois</span></div>
+          <div class="maint-desc">Pour les sites stables avec peu de changements.</div>
+          <hr class="maint-sep">
+          <ul class="maint-feat">
+            <li>2 à 3 modifications par mois</li>
+            <li>Corrections de textes / images</li>
+            <li>Réponse sous 48h</li>
+          </ul>
+        </div>
+
+        <div class="maint-card featured">
+          <div class="maint-badge-pop">⭐ Populaire</div>
+          <span class="maint-icon">⚡</span>
+          <div class="maint-name">Standard</div>
+          <div class="maint-price"><sup>€</sup>10<span>/mois</span></div>
+          <div class="maint-desc">Le bon équilibre pour la plupart des projets.</div>
+          <hr class="maint-sep">
+          <ul class="maint-feat">
+            <li>Modifications actives illimitées</li>
+            <li>Ajouts de contenu réguliers</li>
+            <li>Réponse sous 24h</li>
+            <li>1 retouche design/mois</li>
+          </ul>
+        </div>
+
+        <div class="maint-card">
+          <span class="maint-icon">🚀</span>
+          <div class="maint-name">Premium</div>
+          <div class="maint-price"><sup>€</sup>20<span>/mois</span></div>
+          <div class="maint-desc">Pour les projets actifs avec évolutions régulières.</div>
+          <hr class="maint-sep">
+          <ul class="maint-feat">
+            <li>Modifications illimitées</li>
+            <li>Ajout de nouvelles pages</li>
+            <li>Support prioritaire (même jour)</li>
+            <li>Retouches design incluses</li>
+          </ul>
+        </div>
+
+        <div class="maint-card">
+          <span class="maint-icon">✨</span>
+          <div class="maint-name">Sur mesure</div>
+          <div class="maint-price" style="font-size:1.2rem;padding-top:.4rem;">Tarif libre</div>
+          <div class="maint-desc">Besoin spécifique ? On définit ensemble ce qui vous convient.</div>
+          <hr class="maint-sep">
+          <ul class="maint-feat">
+            <li>Contenu défini ensemble</li>
+            <li>Prix selon la demande</li>
+            <li>Flexibilité totale</li>
+            <li>Contact via Discord</li>
+          </ul>
+        </div>
+
+      </div>
     </div>
   </div>
 </section>
 
-<!-- PROJECTS -->
+<!-- ═══ PROJECTS ═══ -->
 <section id="projects">
   <div class="max-w">
-    <p class="sec-tag">05 — projets</p>
-    <h2 class="sec-title">Ce que j'ai <em>construit</em></h2>
-    <div class="projects-grid">
-      <div class="proj-card"><div class="proj-top"><span class="proj-icon">🔐</span><a href="https://github.com/juto222/Password-Manger" target="_blank" class="proj-gh">↗ GitHub</a></div><div class="proj-name">Password Manager</div><div class="proj-desc">Gestionnaire de mots de passe sécurisé en Python. Code disponible sur demande via Discord.</div><div class="proj-foot"><span class="proj-lang">Python</span><span class="proj-stars">★ 1</span></div></div>
-      <div class="proj-card"><div class="proj-top"><span class="proj-icon">🏫</span><a href="https://github.com/juto222/Projet-Lyc-e" target="_blank" class="proj-gh">↗ GitHub</a></div><div class="proj-name">Projet Lycée</div><div class="proj-desc">Projet scolaire Python réalisé en Terminale Pro CIEL. Mise en pratique des compétences acquises.</div><div class="proj-foot"><span class="proj-lang">Python</span><span class="proj-stars">★ 1</span></div></div>
-      <div class="proj-card"><div class="proj-top"><span class="proj-icon">💻</span><a href="https://github.com/juto222/ECORP" target="_blank" class="proj-gh">↗ GitHub</a></div><div class="proj-name">ECORP</div><div class="proj-desc">Projet HTML inspiré de la culture hacker et de l'univers tech underground. Just for fun.</div><div class="proj-foot"><span class="proj-lang">HTML</span><span class="proj-stars">★ 1</span></div></div>
-      <div class="proj-card"><div class="proj-top"><span class="proj-icon">📋</span><a href="https://github.com/juto222/Menu-d-roulant" target="_blank" class="proj-gh">↗ GitHub</a></div><div class="proj-name">Menu Déroulant</div><div class="proj-desc">Composant menu interactif en Python. Exercice sur la gestion d'interfaces CLI.</div><div class="proj-foot"><span class="proj-lang">Python</span><span class="proj-stars">★ 1</span></div></div>
-      <div class="proj-card"><div class="proj-top"><span class="proj-icon">🎲</span><a href="https://github.com/juto222/Random-Team" target="_blank" class="proj-gh">↗ GitHub</a></div><div class="proj-name">Random Team</div><div class="proj-desc">Générateur d'équipes aléatoires. Né d'un besoin réel entre amis pour le foot.</div><div class="proj-foot"><span class="proj-lang">Python</span><span class="proj-stars">★ 0</span></div></div>
-      <div class="proj-card"><div class="proj-top"><span class="proj-icon">🌟</span><a href="https://github.com/juto222/Portfolio" target="_blank" class="proj-gh">↗ GitHub</a></div><div class="proj-name">Portfolio</div><div class="proj-desc">Mon portfolio HTML original — point de départ de ma présence en ligne. Toujours en évolution.</div><div class="proj-foot"><span class="proj-lang">HTML</span><span class="proj-stars">★ 0</span></div></div>
+    <div class="sec-eyebrow">Projets</div>
+    <h2 class="sec-title">Réalisations <em>& démonstrations</em></h2>
+    <p class="sec-desc">Deux projets personnels illustrant mes capacités en développement web.</p>
+
+    <div class="proj-grid">
+
+      <div class="proj-card">
+        <div class="proj-preview" style="background:linear-gradient(135deg,#0a0c0f,#1a2535);">
+          <div class="proj-preview-bar">
+            <div class="proj-preview-dot" style="background:#ff5f57"></div>
+            <div class="proj-preview-dot" style="background:#ffbd2e"></div>
+            <div class="proj-preview-dot" style="background:#27c93f"></div>
+            <div class="proj-preview-url"></div>
+          </div>
+          <div class="proj-preview-inner" style="background:#0d1117;color:#00e676;font-family:monospace;font-size:.65rem;letter-spacing:.05em;align-items:flex-start;padding:1rem;overflow:hidden;">
+            <div style="opacity:.7;">&gt; ECORP terminal interface</div>
+            <div style="color:#4fc3f7;margin-top:.3rem;">&gt; Initializing...</div>
+            <div style="color:#ffd740;margin-top:.3rem;">&gt; System ready ✓</div>
+          </div>
+        </div>
+        <div class="proj-body">
+          <div class="proj-type">Projet de démonstration · HTML/CSS</div>
+          <div class="proj-name">ECORP — Interface Terminal</div>
+          <div class="proj-desc">Site web inspiré de la culture hacker et de l'univers tech underground. Démontre la maîtrise des effets CSS avancés, animations et design dark.</div>
+          <a href="https://ecorp-site.vercel.app/" target="_blank" class="proj-link">
+            Voir le projet
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-preview" style="background:linear-gradient(135deg,#1e3a8a,#1e40af);">
+          <div class="proj-preview-bar">
+            <div class="proj-preview-dot" style="background:#ff5f57"></div>
+            <div class="proj-preview-dot" style="background:#ffbd2e"></div>
+            <div class="proj-preview-dot" style="background:#27c93f"></div>
+            <div class="proj-preview-url"></div>
+          </div>
+          <div class="proj-preview-inner" style="background:#f8fafc;padding:1rem;align-items:flex-start;overflow:hidden;">
+            <div style="height:8px;background:#1e40af;border-radius:4px;width:60%;margin-bottom:.5rem;"></div>
+            <div style="height:5px;background:#e2e8f0;border-radius:3px;width:90%;margin-bottom:.35rem;"></div>
+            <div style="height:5px;background:#e2e8f0;border-radius:3px;width:75%;"></div>
+          </div>
+        </div>
+        <div class="proj-body">
+          <div class="proj-type">Projet de démonstration · HTML/CSS</div>
+          <div class="proj-name">Portfolio — sitejuto</div>
+          <div class="proj-desc">Premier portfolio web personnel. Point de départ de ma présence en ligne, illustrant l'évolution de mon style et de mes compétences front-end.</div>
+          <a href="https://sitejuto.vercel.app/" target="_blank" class="proj-link">
+            Voir le projet
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-preview" style="background:linear-gradient(135deg,#064e3b,#065f46);">
+          <div class="proj-preview-bar">
+            <div class="proj-preview-dot" style="background:#ff5f57"></div>
+            <div class="proj-preview-dot" style="background:#ffbd2e"></div>
+            <div class="proj-preview-dot" style="background:#27c93f"></div>
+            <div class="proj-preview-url"></div>
+          </div>
+          <div class="proj-preview-inner" style="background:#0f172a;font-family:monospace;font-size:.62rem;color:#4ade80;align-items:flex-start;padding:.75rem;overflow:hidden;">
+            <div>🔐 Password Manager v1.0</div>
+            <div style="color:#94a3b8;margin-top:.3rem;">Enter master password: ****</div>
+            <div style="color:#4ade80;margin-top:.3rem;">Access granted ✓</div>
+          </div>
+        </div>
+        <div class="proj-body">
+          <div class="proj-type">Projet personnel · Python</div>
+          <div class="proj-name">Password Manager</div>
+          <div class="proj-desc">Gestionnaire de mots de passe sécurisé en ligne de commande Python. Chiffrement local, zéro cloud. Code disponible sur demande.</div>
+          <a href="https://github.com/juto222/Password-Manger" target="_blank" class="proj-link">
+            Voir sur GitHub
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-preview" style="background:linear-gradient(135deg,#1e1b4b,#312e81);">
+          <div class="proj-preview-bar">
+            <div class="proj-preview-dot" style="background:#ff5f57"></div>
+            <div class="proj-preview-dot" style="background:#ffbd2e"></div>
+            <div class="proj-preview-dot" style="background:#27c93f"></div>
+            <div class="proj-preview-url"></div>
+          </div>
+          <div class="proj-preview-inner" style="background:#0f172a;font-family:monospace;font-size:.62rem;color:#a5b4fc;align-items:flex-start;padding:.75rem;overflow:hidden;">
+            <div style="color:#818cf8;">🎲 Random Team Generator</div>
+            <div style="color:#94a3b8;margin-top:.3rem;">Players: [Julien, Mehdi, ...]</div>
+            <div style="color:#4ade80;margin-top:.3rem;">Team A: Julien, Omar ⚽</div>
+          </div>
+        </div>
+        <div class="proj-body">
+          <div class="proj-type">Projet personnel · Python</div>
+          <div class="proj-name">Random Team Generator</div>
+          <div class="proj-desc">Générateur d'équipes aléatoires né d'un vrai besoin entre amis pour organiser des matchs de foot. Simple et efficace.</div>
+          <a href="https://github.com/juto222/Random-Team" target="_blank" class="proj-link">
+            Voir sur GitHub
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </a>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
 
-<!-- AMBITION -->
-<section id="ambition" style="background:var(--bg2)">
+<!-- ═══ SKILLS ═══ -->
+<section id="skills">
   <div class="max-w">
-    <p class="sec-tag">06 — objectif</p>
-    <h2 class="sec-title">Devenir <em>Pentester</em></h2>
-    <p style="font-size:.85rem;color:var(--muted);max-width:600px;margin-bottom:3rem;line-height:1.9">Le <strong style="color:var(--text)">pentesting</strong> consiste à attaquer légalement des systèmes pour en trouver les failles avant les hackers malveillants. Technique offensive, logique, créativité — exactement ce qui me passionne.</p>
-    <div class="roadmap">
-      <div class="rm-step"><div class="rm-dot done">✓</div><div class="rm-tag done">terminé</div><div class="rm-name">Bac Pro CIEL</div><div class="rm-desc">Bases solides en Python, HTML, réseaux et cybersécurité.</div></div>
-      <div class="rm-step"><div class="rm-dot active">▶</div><div class="rm-tag active">en cours</div><div class="rm-name">Projets & GitHub</div><div class="rm-desc">Projets concrets, portfolio solide, apprentissage autodidacte.</div></div>
-      <div class="rm-step"><div class="rm-dot next">3</div><div class="rm-tag next">prochaine étape</div><div class="rm-name">BTS SIO SISR</div><div class="rm-desc">Spécialisation réseau et sécurité, Linux avancé, administration réseau.</div></div>
-      <div class="rm-step"><div class="rm-dot goal">🎯</div><div class="rm-tag goal">objectif final</div><div class="rm-name">Pentester Certifié</div><div class="rm-desc">OSCP, CEH — expert en tests d'intrusion et opérations red team.</div></div>
+    <div class="sec-eyebrow">Compétences</div>
+    <h2 class="sec-title">Stack <em>technique</em></h2>
+    <p class="sec-desc">Compétences acquises en formation CIEL et en autodidacte, mises en pratique sur des projets concrets.</p>
+    <div class="skills-cols">
+      <div class="skill-group">
+        <div class="skill-group-title">Langages & Développement</div>
+        <div class="skill-item">
+          <div class="skill-head"><span class="skill-lbl">🐍 Python</span><span class="skill-pct">70%</span></div>
+          <div class="skill-track"><div class="skill-fill" style="--w:70%"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-head"><span class="skill-lbl">🔧 Git & GitHub</span><span class="skill-pct">75%</span></div>
+          <div class="skill-track"><div class="skill-fill" style="--w:75%"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-head"><span class="skill-lbl">🌐 HTML</span><span class="skill-pct">60%</span></div>
+          <div class="skill-track"><div class="skill-fill" style="--w:60%"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-head"><span class="skill-lbl">🎨 CSS</span><span class="skill-pct">45%</span></div>
+          <div class="skill-track"><div class="skill-fill" style="--w:45%"></div></div>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">Cybersécurité & Réseaux (CIEL)</div>
+        <div class="skill-item">
+          <div class="skill-head"><span class="skill-lbl">🔐 Sécurité informatique</span><span class="skill-pct">55%</span></div>
+          <div class="skill-track"><div class="skill-fill cyber" style="--w:55%"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-head"><span class="skill-lbl">🌐 Réseaux TCP/IP</span><span class="skill-pct">50%</span></div>
+          <div class="skill-track"><div class="skill-fill cyber" style="--w:50%"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-head"><span class="skill-lbl">🐧 Linux / Kali</span><span class="skill-pct">40%</span></div>
+          <div class="skill-track"><div class="skill-fill cyber" style="--w:40%"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-head"><span class="skill-lbl">🛠️ Nmap / Wireshark</span><span class="skill-pct">30%</span></div>
+          <div class="skill-track"><div class="skill-fill cyber" style="--w:30%"></div></div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- LANGUAGES -->
-<section id="languages">
+<!-- ═══ ABOUT ═══ -->
+<section id="about">
   <div class="max-w">
-    <p class="sec-tag">07 — langues</p>
-    <h2 class="sec-title">Je parle <em>3 langues</em></h2>
-    <div class="lang-grid">
-      <div class="lang-card"><span class="lang-flag">🇫🇷</span><div class="lang-name">Français</div><div class="lang-lvl">Natif — Langue maternelle</div><div class="lang-bar-bg"><div class="lang-bar" style="--w:100%"></div></div></div>
-      <div class="lang-card"><span class="lang-flag">🇬🇧</span><div class="lang-name">Anglais</div><div class="lang-lvl">Bon niveau — Lecture, écriture, conversation</div><div class="lang-bar-bg"><div class="lang-bar" style="--w:72%"></div></div></div>
-      <div class="lang-card"><span class="lang-flag">🇪🇸</span><div class="lang-name">Espagnol</div><div class="lang-lvl">Notions — Bases acquises</div><div class="lang-bar-bg"><div class="lang-bar" style="--w:35%"></div></div></div>
+    <div class="sec-eyebrow">À propos</div>
+    <h2 class="sec-title">Qui suis-<em>je</em> ?</h2>
+    <div class="about-grid">
+      <div>
+        <div class="about-text">
+          <p>Je m'appelle <strong>Julien</strong>, développeur freelance de 17 ans, actuellement en <strong>Terminale Professionnelle CIEL</strong> (Cybersécurité, Informatique et réseaux, Électronique).</p>
+          <p>Je développe en <strong>Python</strong> et en <strong>HTML/CSS</strong>. Mon objectif : créer des outils concrets et utiles, qu'il s'agisse d'automatisation, de sites web ou de bots Discord. Chaque projet est une opportunité d'apprendre.</p>
+          <p>Mon ambition à long terme est de devenir <strong>pentester offensif</strong> — un expert en tests d'intrusion qui identifie les failles de sécurité avant les acteurs malveillants.</p>
+          <p>En dehors du code : <strong>boxe</strong>, <strong>football</strong>, <strong>échecs</strong> (1 400 ELO) et <strong>voyages</strong> (8 pays visités).</p>
+        </div>
+
+        <!-- ROADMAP -->
+        <div style="margin-top:3rem;">
+          <div style="font-size:.7rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--gray-400);margin-bottom:1.5rem;">Parcours</div>
+          <div class="roadmap">
+            <div class="roadmap-connector">
+              <div class="rm-wrap">
+                <div class="rm-circle done">✓</div>
+                <div class="rm-status done">Terminé</div>
+                <div class="rm-name">Bac Pro CIEL</div>
+                <div class="rm-desc">Bases Python, HTML, réseaux et cybersécurité.</div>
+              </div>
+            </div>
+            <div class="roadmap-connector">
+              <div class="rm-wrap">
+                <div class="rm-circle active">▶</div>
+                <div class="rm-status active">En cours</div>
+                <div class="rm-name">Projets & Freelance</div>
+                <div class="rm-desc">Portfolio solide, apprentissage autodidacte, premières prestations.</div>
+              </div>
+            </div>
+            <div class="roadmap-connector">
+              <div class="rm-wrap">
+                <div class="rm-circle next">3</div>
+                <div class="rm-status next">Prochaine étape</div>
+                <div class="rm-name">BTS SIO SISR</div>
+                <div class="rm-desc">Spécialisation réseau, Linux avancé, administration système.</div>
+              </div>
+            </div>
+            <div class="roadmap-connector">
+              <div class="rm-wrap">
+                <div class="rm-circle goal">🎯</div>
+                <div class="rm-status goal">Objectif final</div>
+                <div class="rm-name">Pentester certifié</div>
+                <div class="rm-desc">OSCP, CEH — expert en tests d'intrusion et red team.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <table class="info-table">
+          <tr><td>Âge</td><td>17 ans</td></tr>
+          <tr><td>Formation</td><td>Terminale Pro CIEL</td></tr>
+          <tr><td>Spécialité</td><td><span class="info-highlight">🔐 Cybersécurité & Réseaux</span></td></tr>
+          <tr><td>Objectif</td><td>Pentester offensif</td></tr>
+          <tr><td>Chess ELO</td><td style="color:#d97706;font-weight:700;">1 400 ♟</td></tr>
+          <tr><td>Pays visités</td><td>8 pays 🌍</td></tr>
+          <tr><td>Discord</td><td style="color:#5865f2;font-weight:600;">user30222</td></tr>
+          <tr><td>GitHub</td><td><a href="https://github.com/juto222" target="_blank" style="color:var(--blue-600);font-weight:600;text-decoration:none;">juto222 ↗</a></td></tr>
+          <tr><td>Disponibilité</td><td><span style="color:#059669;font-weight:700;">● Disponible</span></td></tr>
+        </table>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- CONTACT -->
-<section id="contact" style="background:var(--bg2)">
+<!-- ═══ CONTACT ═══ -->
+<section id="contact">
   <div class="max-w">
-    <p class="sec-tag">08 — contact</p>
-    <h2 class="sec-title">On reste <em>en contact</em> ?</h2>
-    <div class="contact-layout">
-      <div class="contact-body">
-        <p>Tu as un projet à partager, une question sur la cybersécurité, ou tu veux me commander une prestation ? <strong>Je suis ouvert à tout.</strong></p>
-        <p>Meilleur canal : <strong>Discord user30222</strong>. Je réponds dès que possible.</p>
-        <div class="avail-badge"><span class="avail-dot"></span>disponible pour collaborations, projets & stages</div>
+    <div class="contact-grid">
+      <div class="contact-left">
+        <div class="contact-eyebrow">Contact</div>
+        <h2 class="contact-title">Un projet ? Discutons-<em>en.</em></h2>
+        <p class="contact-desc">
+          Que vous ayez besoin d'un site web, d'un script d'automatisation ou d'un bot Discord, <strong>je suis disponible</strong>. Décrivez votre besoin sur Discord et nous trouverons ensemble la solution adaptée à votre budget.
+        </p>
+        <div class="avail-pill">● Disponible pour prestations, collaborations & stages</div>
       </div>
       <div class="contact-links">
-        <a href="https://github.com/juto222" target="_blank" class="clink"><span class="clink-icon">🐙</span><div class="clink-body"><span class="clink-name">GitHub</span><span class="clink-val">github.com/juto222</span></div><span class="clink-arr">→</span></a>
-        <div class="clink"><span class="clink-icon">💬</span><div class="clink-body"><span class="clink-name">Discord</span><span class="clink-val">user30222</span></div><span class="clink-arr">→</span></div>
-        <a href="services.html" class="clink" style="border-color:rgba(255,215,64,.2)"><span class="clink-icon">💼</span><div class="clink-body"><span class="clink-name" style="color:var(--yellow)">Services & Tarifs</span><span class="clink-val">30+ prestations · prix négociables</span></div><span class="clink-arr" style="color:var(--yellow)">→</span></a>
+        <a href="https://github.com/juto222" target="_blank" class="clink">
+          <div class="clink-ico">🐙</div>
+          <div class="clink-body">
+            <span class="clink-name">GitHub</span>
+            <span class="clink-val">github.com/juto222</span>
+          </div>
+          <span class="clink-arr">→</span>
+        </a>
+        <div class="clink discord">
+          <div class="clink-ico">💬</div>
+          <div class="clink-body">
+            <span class="clink-name">Discord — Moyen de contact principal</span>
+            <span class="clink-val">user30222 · Réponse rapide garantie</span>
+          </div>
+          <span class="clink-arr">→</span>
+        </div>
+        <a href="services.html" class="clink">
+          <div class="clink-ico">💼</div>
+          <div class="clink-body">
+            <span class="clink-name" style="color:#fbbf24;">Voir tous les services & tarifs</span>
+            <span class="clink-val">30+ prestations · Tarifs négociables</span>
+          </div>
+          <span class="clink-arr">→</span>
+        </a>
       </div>
     </div>
   </div>
 </section>
 
 <footer>
-  <p>© 2026 <span class="fg">juto222</span> — Tous droits réservés</p>
-  <p>Fait avec ♥ · Powered by Python & HTML · Inspiré de ECORP</p>
+  <p>© 2026 <span class="f-blue">Julien</span> — Développeur Freelance</p>
+  <p>Réalisé avec ♥ · Python & HTML · Contact : <span class="f-blue">Discord user30222</span></p>
 </footer>
 
 <script>
+// Navbar scroll shadow
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 10);
+});
+
+// Active nav link on scroll
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 100) current = s.id; });
+  navLinks.forEach(a => {
+    a.classList.remove('active');
+    if (a.getAttribute('href') === `#${current}`) a.classList.add('active');
+  });
+});
+
+// Skill bar animation on scroll
 const io = new IntersectionObserver(entries => {
   entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('on'); });
 }, { threshold: 0.3 });
-document.querySelectorAll('.bar-fill, .lang-bar, .elo-fill').forEach(el => io.observe(el));
+document.querySelectorAll('.skill-fill').forEach(el => io.observe(el));
 
-const sections = document.querySelectorAll('section[id]');
-const navAs = document.querySelectorAll('.nav-links a');
-window.addEventListener('scroll', () => {
-  let cur = '';
-  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 120) cur = s.id; });
-  navAs.forEach(a => {
-    const h = a.getAttribute('href');
-    if (h && h.startsWith('#')) a.style.color = h === `#${cur}` ? 'var(--green)' : '';
+// Service tabs filter
+function filterSvc(cat) {
+  document.querySelectorAll('.svc-card').forEach(c => {
+    const show = cat === 'all' || c.dataset.cat === cat;
+    c.style.display = show ? 'flex' : 'none';
   });
-});
+  document.querySelectorAll('.svc-tab').forEach(t => t.classList.remove('active'));
+  event.target.classList.add('active');
+}
 </script>
 </body>
 </html>
