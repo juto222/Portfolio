@@ -342,7 +342,6 @@ section { padding: 6rem 3rem; }
 /* ── SKILLS ── */
 #skills { background: var(--gray-50); }
 .skills-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
-.skill-group { }
 .skill-group-title {
   font-size: .7rem; font-weight: 700; letter-spacing: .15em;
   text-transform: uppercase; color: var(--gray-400);
@@ -409,7 +408,6 @@ section { padding: 6rem 3rem; }
 /* ── CONTACT ── */
 #contact { background: var(--gray-900); }
 .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
-.contact-left {}
 .contact-eyebrow { color: #93c5fd; font-size: .7rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; margin-bottom: .6rem; display: flex; align-items: center; gap: .6rem; }
 .contact-eyebrow::before { content: ''; width: 24px; height: 2px; background: #93c5fd; border-radius: 1px; }
 .contact-title { font-size: clamp(1.6rem, 3vw, 2.4rem); font-weight: 800; color: white; letter-spacing: -.03em; line-height: 1.1; margin-bottom: 1rem; }
@@ -560,11 +558,11 @@ footer p { font-size: .78rem; color: var(--gray-600); }
 
     <!-- Category : Web -->
     <div class="svc-tabs">
-      <button class="svc-tab active" onclick="filterSvc('web')"> Sites Web</button>
-      <button class="svc-tab" onclick="filterSvc('python')"> Scripts Python</button>
-      <button class="svc-tab" onclick="filterSvc('discord')"> Bots Discord</button>
-      <button class="svc-tab" onclick="filterSvc('outils')"> Outils Utilitaires</button>
-      <button class="svc-tab" onclick="filterSvc('all')">Tout afficher</button>
+      <button class="svc-tab active" onclick="filterSvc('web', this)"> Sites Web</button>
+      <button class="svc-tab" onclick="filterSvc('python', this)"> Scripts Python</button>
+      <button class="svc-tab" onclick="filterSvc('discord', this)"> Bots Discord</button>
+      <button class="svc-tab" onclick="filterSvc('outils', this)"> Outils Utilitaires</button>
+      <button class="svc-tab" onclick="filterSvc('all', this)">Tout afficher</button>
     </div>
 
     <div class="svc-grid" id="svc-grid">
@@ -784,7 +782,7 @@ footer p { font-size: .78rem; color: var(--gray-600); }
           <p style="font-size:.88rem;color:var(--gray-500);line-height:1.8;max-width:580px;">Site vitrine, portfolio, landing page ou page de serveur Discord — je m'occupe de tout : design, développement, intégration du contenu. Livraison en fichiers HTML/CSS prêts à déployer.</p>
         </div>
         <div style="text-align:right;flex-shrink:0;">
-          <div style="font-size:2rem;font-weight:900;color:var(--blue-600);">8€</div>
+          <div style="font-size:2rem;font-weight:900;color:var(--blue-600);">300€</div>
           <div style="font-size:.75rem;color:var(--gray-400);">à partir de</div>
         </div>
       </div>
@@ -813,7 +811,7 @@ footer p { font-size: .78rem; color: var(--gray-600); }
 
         <div class="maint-card">
           <div class="maint-name">Basique</div>
-          <div class="maint-price"><sup>€</sup>10<span>/mois</span></div>
+          <div class="maint-price"><sup>€</sup>6,99<span>/mois</span></div>
           <div class="maint-desc">Pour les sites stables avec peu de changements.</div>
           <hr class="maint-sep">
           <ul class="maint-feat">
@@ -826,7 +824,7 @@ footer p { font-size: .78rem; color: var(--gray-600); }
         <div class="maint-card featured">
           <div class="maint-badge-pop">⭐ Populaire</div>
           <div class="maint-name">Standard</div>
-          <div class="maint-price"><sup>€</sup>30<span>/mois</span></div>
+          <div class="maint-price"><sup>€</sup>24,99<span>/mois</span></div>
           <div class="maint-desc">Le bon équilibre pour la plupart des projets.</div>
           <hr class="maint-sep">
           <ul class="maint-feat">
@@ -839,7 +837,7 @@ footer p { font-size: .78rem; color: var(--gray-600); }
 
         <div class="maint-card">
           <div class="maint-name">Premium</div>
-          <div class="maint-price"><sup>€</sup>50<span>/mois</span></div>
+          <div class="maint-price"><sup>€</sup>49,99<span>/mois</span></div>
           <div class="maint-desc">Pour les projets actifs avec évolutions régulières.</div>
           <hr class="maint-sep">
           <ul class="maint-feat">
@@ -1181,13 +1179,13 @@ const io = new IntersectionObserver(entries => {
 document.querySelectorAll('.skill-fill').forEach(el => io.observe(el));
 
 // Service tabs filter
-function filterSvc(cat) {
+function filterSvc(cat, btn) {
   document.querySelectorAll('.svc-card').forEach(c => {
     const show = cat === 'all' || c.dataset.cat === cat;
     c.style.display = show ? 'flex' : 'none';
   });
   document.querySelectorAll('.svc-tab').forEach(t => t.classList.remove('active'));
-  event.target.classList.add('active');
+  if (btn && btn.classList) btn.classList.add('active');
 }
 </script>
 </body>
